@@ -6,7 +6,7 @@ batch_size = 128
 n_batch = mnist.train.num_examples // batch_size
 max_step = 1000
 keep_ = 0.8
-log_dir = "Logs/log-6.1"
+log_dir = "Logs"
 
 
 # 生成权重
