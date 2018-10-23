@@ -5,7 +5,6 @@ __date__ = '2018/10/22 20:18'
 import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
 
-
 # 载入数据集
 mnist = input_data.read_data_sets("MNIST_data/", one_hot=True)
 
