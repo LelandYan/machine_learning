@@ -4,7 +4,7 @@ from tensorflow.examples.tutorials.mnist import input_data
 mnist = input_data.read_data_sets('MNIST_data', one_hot=True)
 batch_size = 128
 n_batch = mnist.train.num_examples // batch_size
-max_step = 1000
+max_step = 10000
 keep_ = 0.8
 log_dir = "Logs"
 
