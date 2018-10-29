@@ -3,7 +3,7 @@ __author__ = 'LelandYan'
 __date__ = '2018/10/29 23:42'
 
 import tensorflow as tf
-import numpy as np
+
 
 
 def add_layer(inputs, in_size, out_size, activation_function=None):
