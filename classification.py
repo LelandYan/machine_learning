@@ -4,7 +4,6 @@ __date__ = '2018/10/30 13:49'
 
 import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
-
 mnist = input_data.read_data_sets("MNIST_data",one_hot=True)
 
 def add_layer(inputs,in_size,out_size,activation_function=None):
