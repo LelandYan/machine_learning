@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a661dfef-cf3f-4b65-8db9-4b94e0333aa5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/numpy_learning/numpy_test1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RNN例子.py" beforeDir="false" afterPath="$PROJECT_DIR$/RNN例子.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pandas_learning/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/numpy_learning/numpy_test1.py" beforeDir="false" afterPath="$PROJECT_DIR$/numpy_learning/numpy_test1.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,7 +13,7 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/tensorflow_learning$RNN.coverage" NAME="RNN例子 Coverage Results" MODIFIED="1541173415262" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/tensorflow_learning$numpy_test1.coverage" NAME="numpy_test1 Coverage Results" MODIFIED="1541175121424" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/numpy_learning" />
+    <SUITE FILE_PATH="coverage/tensorflow_learning$numpy_test1.coverage" NAME="numpy_test1 Coverage Results" MODIFIED="1541237192407" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/numpy_learning" />
     <SUITE FILE_PATH="coverage/tensorflow_learning$.coverage" NAME="模型的保存 Coverage Results" MODIFIED="1541000983509" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/tensorflow_learning$overfittingTest.coverage" NAME="overfittingTest Coverage Results" MODIFIED="1540914206952" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/tensorflow_learning$classification.coverage" NAME="classification Coverage Results" MODIFIED="1540908943572" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -34,19 +33,19 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="md" value="1" />
-          <entry key="py" value="15" />
+          <entry key="py" value="16" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Markdown" value="1" />
-          <entry key="Python" value="15" />
+          <entry key="Python" value="16" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="md" value="42" />
-          <entry key="py" value="12617" />
+          <entry key="py" value="13107" />
           <entry key="txt" value="6" />
         </counts>
       </usages-collector>
@@ -54,7 +53,7 @@
         <counts>
           <entry key="Markdown" value="42" />
           <entry key="PLAIN_TEXT" value="6" />
-          <entry key="Python" value="12617" />
+          <entry key="Python" value="13107" />
         </counts>
       </usages-collector>
     </session>
@@ -151,11 +150,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/numpy_learning/numpy_test1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+            <state relative-caret-position="206">
+              <caret line="32" selection-start-line="32" selection-start-column="2" selection-end-line="34" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pandas_learning/test.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="4" />
+              <folding>
+                <element signature="e#79#98#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -184,6 +195,7 @@
         <option value="$PROJECT_DIR$/RNN.py" />
         <option value="$PROJECT_DIR$/RNN例子.py" />
         <option value="$PROJECT_DIR$/numpy_learning/numpy_test1.py" />
+        <option value="$PROJECT_DIR$/pandas_learning/test.py" />
       </list>
     </option>
   </component>
@@ -193,11 +205,11 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="-203" />
-    <option name="y" value="405" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="822" />
+    <option name="y" value="240" />
     <option name="width" value="1554" />
-    <option name="height" value="1057" />
+    <option name="height" value="1079" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -464,7 +476,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="584" y="116" width="1243" height="845" extended-state="0" />
+    <frame x="658" y="192" width="1243" height="863" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.15021098" />
@@ -472,7 +484,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.497191" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.4849315" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -631,8 +643,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/numpy_learning/numpy_test1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        <state relative-caret-position="206">
+          <caret line="32" selection-start-line="32" selection-start-column="2" selection-end-line="34" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pandas_learning/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="4" />
+          <folding>
+            <element signature="e#79#98#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
