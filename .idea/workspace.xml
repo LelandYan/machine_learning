@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a661dfef-cf3f-4b65-8db9-4b94e0333aa5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/mnist/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mnist/input_data.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mnist/model.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mnist/regression.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/tensorflow_learning.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/tensorflow_learning.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/numpy_learning/numpy_test1.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RNN例子.py" beforeDir="false" afterPath="$PROJECT_DIR$/RNN例子.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,11 +13,10 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/tensorflow_learning$numpy_test1.coverage" NAME="numpy_test1 Coverage Results" MODIFIED="1541175121424" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/numpy_learning" />
-    <SUITE FILE_PATH="coverage/tensorflow_learning$overfittingTest.coverage" NAME="overfittingTest Coverage Results" MODIFIED="1540914206952" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/tensorflow_learning$RNN.coverage" NAME="RNN例子 Coverage Results" MODIFIED="1541173415262" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/tensorflow_learning$regression.coverage" NAME="regression Coverage Results" MODIFIED="1541397318848" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/mnist" />
+    <SUITE FILE_PATH="coverage/tensorflow_learning$numpy_test1.coverage" NAME="numpy_test1 Coverage Results" MODIFIED="1541175121424" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/numpy_learning" />
     <SUITE FILE_PATH="coverage/tensorflow_learning$.coverage" NAME="模型的保存 Coverage Results" MODIFIED="1541000983509" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/tensorflow_learning$overfittingTest.coverage" NAME="overfittingTest Coverage Results" MODIFIED="1540914206952" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/tensorflow_learning$classification.coverage" NAME="classification Coverage Results" MODIFIED="1540908943572" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FUSProjectUsageTrigger">
@@ -63,53 +58,92 @@
         </counts>
       </usages-collector>
     </session>
-    <session id="802092400">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="1" />
-          <entry key="project.open.time.46" value="1" />
-          <entry key="project.open.time.6" value="1" />
-          <entry key="project.opened" value="2" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="py" value="5" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="Python" value="5" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="py" value="1801" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="Python" value="1801" />
-        </counts>
-      </usages-collector>
-    </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mnist/input_data.py">
+        <entry file="file://$PROJECT_DIR$/建立神将网络.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="23" lean-forward="true" selection-start-column="23" selection-end-column="23" />
+            <state relative-caret-position="1230">
+              <caret line="43" column="21" selection-start-line="43" selection-start-column="15" selection-end-line="43" selection-end-column="21" />
+              <folding>
+                <element signature="e#80#103#0" expanded="true" />
+                <marker date="1540876176746" expanded="true" signature="303:312" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/卷积神经网络应用于MNIST数据集分类.py">
+        <entry file="file://$PROJECT_DIR$/classification.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1876">
-              <caret line="117" column="23" selection-start-line="117" selection-start-column="23" selection-end-line="117" selection-end-column="23" />
+            <state relative-caret-position="120">
+              <caret line="4" column="16" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
+              <folding>
+                <marker date="1540911594254" expanded="true" signature="289:602" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/overfittingTest.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1470">
+              <caret line="52" column="25" selection-start-line="52" selection-start-column="25" selection-end-line="52" selection-end-column="25" />
+              <folding>
+                <element signature="e#79#102#0" expanded="true" />
+                <marker date="1540914206824" expanded="true" signature="504:509" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/卷积神经网络.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="840">
+              <caret line="29" selection-start-line="29" selection-end-line="29" />
+              <folding>
+                <element signature="e#80#103#0" expanded="true" />
+                <marker date="1540999589397" expanded="true" signature="283:288" ph="..." />
+                <marker date="1540999589397" expanded="true" signature="650:655" ph="..." />
+                <marker date="1540999589397" expanded="true" signature="859:930" ph="..." />
+                <marker date="1540999589397" expanded="true" signature="950:1040" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/模型的保存.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="930">
+              <caret line="32" column="47" selection-start-line="32" selection-start-column="47" selection-end-line="32" selection-end-column="47" />
+              <folding>
+                <element signature="e#80#103#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/RNN.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2070">
+              <caret line="70" column="33" selection-start-line="70" selection-start-column="33" selection-end-line="70" selection-end-column="33" />
+              <folding>
+                <element signature="e#78#101#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/RNN例子.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-3426">
+              <caret line="26" selection-start-line="26" selection-end-line="26" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -117,27 +151,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mnist/regression.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="94">
-              <caret line="32" selection-start-line="32" selection-end-line="32" />
-              <folding>
-                <element signature="e#0#9#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/mnist/model.py">
+        <entry file="file://$PROJECT_DIR$/numpy_learning/numpy_test1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="358">
-              <caret line="46" column="77" selection-start-line="46" selection-start-column="77" selection-end-line="46" selection-end-column="77" />
-              <folding>
-                <marker date="1541398101831" expanded="true" signature="44:49" ph="..." />
-                <marker date="1541398101831" expanded="true" signature="241:1474" ph="..." />
-              </folding>
+            <state relative-caret-position="180">
+              <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
             </state>
           </provider>
         </entry>
@@ -166,9 +184,6 @@
         <option value="$PROJECT_DIR$/RNN.py" />
         <option value="$PROJECT_DIR$/RNN例子.py" />
         <option value="$PROJECT_DIR$/numpy_learning/numpy_test1.py" />
-        <option value="$PROJECT_DIR$/mnist/input_data.py" />
-        <option value="$PROJECT_DIR$/mnist/regression.py" />
-        <option value="$PROJECT_DIR$/mnist/model.py" />
       </list>
     </option>
   </component>
@@ -178,11 +193,11 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="274" />
-    <option name="y" value="181" />
-    <option name="width" value="1153" />
-    <option name="height" value="843" />
+  <component name="ProjectFrameBounds" extendedState="1">
+    <option name="x" value="-203" />
+    <option name="y" value="405" />
+    <option name="width" value="1554" />
+    <option name="height" value="1057" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -196,11 +211,6 @@
             <path>
               <item name="tensorflow_learning" type="b2602c69:ProjectViewProjectNode" />
               <item name="tensorflow_learning" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="tensorflow_learning" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tensorflow_learning" type="462c0819:PsiDirectoryNode" />
-              <item name="mnist" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -224,7 +234,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.regression">
+  <component name="RunManager" selected="Python.numpy_test1">
     <configuration name="RNN" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="tensorflow_learning" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -283,6 +293,28 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/RNN例子.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="卷积神经网络" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="tensorflow_learning" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/卷积神经网络.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -379,39 +411,17 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="regression" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="tensorflow_learning" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/mnist" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/mnist/regression.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <list>
       <item itemvalue="Python.classification" />
       <item itemvalue="Python.overfittingTest" />
       <item itemvalue="Python.RNN" />
+      <item itemvalue="Python.RNN例子" />
       <item itemvalue="Python.numpy_test1" />
-      <item itemvalue="Python.regression" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.regression" />
         <item itemvalue="Python.numpy_test1" />
+        <item itemvalue="Python.RNN例子" />
         <item itemvalue="Python.RNN" />
         <item itemvalue="Python.overfittingTest" />
         <item itemvalue="Python.classification" />
@@ -454,15 +464,15 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="249" y="358" width="1153" height="843" extended-state="0" />
+    <frame x="584" y="116" width="1243" height="845" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.20768528" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.15021098" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.49717513" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.497191" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -491,57 +501,138 @@
     <option name="LAST_COMMIT_MESSAGE" value="建立神经网络" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://E:/anaconda/envs/tensorflow-gpu/Lib/site-packages/matplotlib/backend_bases.py" />
-    <entry file="file://$PROJECT_DIR$/关于运行tensorboard方法以及问题解决.md" />
-    <entry file="file://$PROJECT_DIR$/tensorboard网络结构.py" />
-    <entry file="file://$PROJECT_DIR$/tensorboard可视化.py" />
-    <entry file="file://$PROJECT_DIR$/建立神将网络.py" />
-    <entry file="file://$PROJECT_DIR$/classification.py" />
-    <entry file="file://$PROJECT_DIR$/overfittingTest.py" />
-    <entry file="file://$PROJECT_DIR$/卷积神经网络.py" />
-    <entry file="file://$PROJECT_DIR$/模型的保存.py" />
-    <entry file="file://$PROJECT_DIR$/RNN.py" />
-    <entry file="file://E:/anaconda/envs/tensorflow-gpu/Lib/site-packages/tensorflow/python/ops/rnn_cell_impl.py" />
-    <entry file="file://E:/anaconda/envs/tensorflow-gpu/Lib/site-packages/tensorflow/python/ops/variable_scope.py" />
-    <entry file="file://$PROJECT_DIR$/RNN例子.py" />
-    <entry file="file://$PROJECT_DIR$/numpy_learning/numpy_test1.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mnist/input_data.py">
+    <entry file="file://E:/anaconda/envs/tensorflow-gpu/Lib/site-packages/matplotlib/backend_bases.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="23" lean-forward="true" selection-start-column="23" selection-end-column="23" />
+        <state relative-caret-position="153">
+          <caret line="2452" selection-start-line="2452" selection-end-line="2452" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mnist/regression.py">
+    <entry file="file://$PROJECT_DIR$/关于运行tensorboard方法以及问题解决.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="90">
+            <caret line="3" column="30" selection-start-line="3" selection-start-column="30" selection-end-line="3" selection-end-column="30" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tensorboard网络结构.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="94">
-          <caret line="32" selection-start-line="32" selection-end-line="32" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
+        <state>
+          <caret line="55" column="55" lean-forward="true" selection-start-line="55" selection-start-column="55" selection-end-line="55" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tensorboard可视化.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="115" column="20" selection-start-line="115" selection-start-column="4" selection-end-line="115" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/卷积神经网络应用于MNIST数据集分类.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1876">
-          <caret line="117" column="23" selection-start-line="117" selection-start-column="23" selection-end-line="117" selection-end-column="23" />
+        <state relative-caret-position="3480">
+          <caret line="116" column="58" selection-start-line="116" selection-start-column="58" selection-end-line="116" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/建立神将网络.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1230">
+          <caret line="43" column="21" selection-start-line="43" selection-start-column="15" selection-end-line="43" selection-end-column="21" />
+          <folding>
+            <element signature="e#80#103#0" expanded="true" />
+            <marker date="1540876176746" expanded="true" signature="303:312" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classification.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="4" column="16" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
+          <folding>
+            <marker date="1540911594254" expanded="true" signature="289:602" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/overfittingTest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1470">
+          <caret line="52" column="25" selection-start-line="52" selection-start-column="25" selection-end-line="52" selection-end-column="25" />
+          <folding>
+            <element signature="e#79#102#0" expanded="true" />
+            <marker date="1540914206824" expanded="true" signature="504:509" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/卷积神经网络.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="840">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
+          <folding>
+            <element signature="e#80#103#0" expanded="true" />
+            <marker date="1540999589397" expanded="true" signature="283:288" ph="..." />
+            <marker date="1540999589397" expanded="true" signature="650:655" ph="..." />
+            <marker date="1540999589397" expanded="true" signature="859:930" ph="..." />
+            <marker date="1540999589397" expanded="true" signature="950:1040" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/模型的保存.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="930">
+          <caret line="32" column="47" selection-start-line="32" selection-start-column="47" selection-end-line="32" selection-end-column="47" />
+          <folding>
+            <element signature="e#80#103#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RNN.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2070">
+          <caret line="70" column="33" selection-start-line="70" selection-start-column="33" selection-end-line="70" selection-end-column="33" />
+          <folding>
+            <element signature="e#78#101#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://E:/anaconda/envs/tensorflow-gpu/Lib/site-packages/tensorflow/python/ops/rnn_cell_impl.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="298" column="6" selection-start-line="298" selection-start-column="6" selection-end-line="298" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://E:/anaconda/envs/tensorflow-gpu/Lib/site-packages/tensorflow/python/ops/variable_scope.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="1452" column="4" selection-start-line="1452" selection-start-column="4" selection-end-line="1452" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RNN例子.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3426">
+          <caret line="26" selection-start-line="26" selection-end-line="26" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mnist/model.py">
+    <entry file="file://$PROJECT_DIR$/numpy_learning/numpy_test1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="46" column="77" selection-start-line="46" selection-start-column="77" selection-end-line="46" selection-end-column="77" />
-          <folding>
-            <marker date="1541398101831" expanded="true" signature="44:49" ph="..." />
-            <marker date="1541398101831" expanded="true" signature="241:1474" ph="..." />
-          </folding>
+        <state relative-caret-position="180">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
         </state>
       </provider>
     </entry>
