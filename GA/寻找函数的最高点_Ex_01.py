@@ -50,7 +50,6 @@ def mutate(child):
 
 # initialize the pop DNA
 pop = np.random.randint(2, size=(POP_SIZE, DNA_SIZE))
-print(pop)
 plt.ion()
 x = np.linspace(*X_BOUND, 200)
 plt.plot(x, F(x))
@@ -59,6 +58,20 @@ for _ in range(N_GENERATIONS):
     # compute function value by extracting DNA
     F_values = F(translateDNA(pop))
 
+    # something about plotting
+    if 'sca' in globals(): sca.remove()
+    sca = plt.scatter(translateDNA(pop), F_values, s=200, lw=0, c='red', alpha=0.5)
+    plt.pause(0.05)
+
+    # GA part(evolution)
+    fitness = get_fitness(F_values)
+    print("Most fitted DNA: ", pop[np.argmax(fitness), :])
+    pop = select(pop, fitness)
+    pop_copy = pop.copy()
+    for parent in pop:
+        child = crossover(parent, pop_copy)
+        child = mutate(child)
+        parent[:] = child
 
 plt.ioff()
 plt.show()
