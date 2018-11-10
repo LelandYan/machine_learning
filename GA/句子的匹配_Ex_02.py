@@ -1,6 +1,6 @@
 import numpy as np
 
-TARGET_PHRASE = "I am very  /  "       # target DNA
+TARGET_PHRASE = "LelandYan"       # target DNA
 POP_SIZE = 300                      # population size
 CROSS_RATE = 0.4                    # mating probability (DNA crossover)
 MUTATION_RATE = 0.01                # mutation probability
