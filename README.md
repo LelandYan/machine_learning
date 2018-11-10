@@ -1,1 +1,1 @@
-# the note of tensorflow learning
+# the note of tensorflow learning and machine learning
