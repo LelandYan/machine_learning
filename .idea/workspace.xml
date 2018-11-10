@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a661dfef-cf3f-4b65-8db9-4b94e0333aa5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/mnist/convolutional.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/js/main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/css/bootstrap.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/jquery.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mnist/covolutional.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mnist/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/mnist/model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mnist/regression.py" beforeDir="false" afterPath="$PROJECT_DIR$/mnist/regression.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/saver_restore.py" beforeDir="false" afterPath="$PROJECT_DIR$/saver_restore.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,7 +16,7 @@
     <SUITE FILE_PATH="coverage/tensorflow_learning$RNN.coverage" NAME="RNN例子 Coverage Results" MODIFIED="1541173415262" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/tensorflow_learning$convolutional.coverage" NAME="convolutional Coverage Results" MODIFIED="1541408560164" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/mnist" />
     <SUITE FILE_PATH="coverage/tensorflow_learning$regression.coverage" NAME="regression Coverage Results" MODIFIED="1541413767237" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/mnist" />
-    <SUITE FILE_PATH="coverage/tensorflow_learning$main.coverage" NAME="main Coverage Results" MODIFIED="1541413823909" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/tensorflow_learning$main.coverage" NAME="main Coverage Results" MODIFIED="1541414657296" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/tensorflow_learning$.coverage" NAME="模型的保存 Coverage Results" MODIFIED="1541000983509" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/tensorflow_learning$classification.coverage" NAME="classification Coverage Results" MODIFIED="1540908943572" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
@@ -72,16 +62,18 @@
     <session id="802092400">
       <usages-collector id="statistics.file.extensions.open">
         <counts>
+          <entry key="css" value="1" />
           <entry key="html" value="1" />
-          <entry key="js" value="3" />
-          <entry key="py" value="10" />
+          <entry key="js" value="6" />
+          <entry key="py" value="12" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
+          <entry key="CSS" value="1" />
           <entry key="HTML" value="1" />
-          <entry key="JavaScript" value="3" />
-          <entry key="Python" value="10" />
+          <entry key="JavaScript" value="6" />
+          <entry key="Python" value="12" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -94,15 +86,21 @@
           <entry key="Python" value="1858" />
         </counts>
       </usages-collector>
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.open.time.43" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mnist/regression.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="99">
-              <caret line="12" column="7" lean-forward="true" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
+            <state relative-caret-position="660">
+              <caret line="23" column="53" selection-start-line="23" selection-start-column="53" selection-end-line="23" selection-end-column="53" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -113,8 +111,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mnist/convolutional.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="33">
-              <caret line="13" column="95" lean-forward="true" selection-start-line="13" selection-end-line="13" selection-end-column="95" />
+            <state relative-caret-position="330">
+              <caret line="13" column="95" selection-start-line="13" selection-end-line="13" selection-end-column="95" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -122,11 +120,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="31" column="12" lean-forward="true" selection-start-line="31" selection-start-column="12" selection-end-line="31" selection-end-column="12" />
+            <state relative-caret-position="269">
+              <caret line="12" column="37" lean-forward="true" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="37" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
                 <marker date="1541413352047" expanded="true" signature="597:602" ph="..." />
@@ -139,55 +137,24 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://E:/anaconda/envs/tensorflow/Lib/site-packages/flask/app.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="146">
-              <caret line="942" column="50" selection-start-line="942" selection-start-column="43" selection-end-line="942" selection-end-column="50" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/static/js/jquery.min.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret lean-forward="true" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/static/js/main.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-4096">
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/js/main.js">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/index.html">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mnist/model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="297">
-              <caret line="48" column="22" selection-start-line="48" selection-start-column="15" selection-end-line="48" selection-end-column="22" />
+            <state relative-caret-position="1155">
+              <caret line="35" column="32" selection-start-line="35" selection-start-column="32" selection-end-line="35" selection-end-column="32" />
               <folding>
                 <marker date="1541408560127" expanded="true" signature="44:49" ph="..." />
-                <marker date="1541408560127" expanded="true" signature="241:1560" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/卷积神经网络应用于MNIST数据集分类.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2343">
+              <caret line="72" column="41" selection-start-line="72" selection-start-column="40" selection-end-line="72" selection-end-column="41" />
+              <folding>
+                <element signature="e#0#23#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -231,9 +198,9 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="139" />
-    <option name="y" value="65" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="158" />
+    <option name="y" value="-20" />
     <option name="width" value="1153" />
     <option name="height" value="897" />
   </component>
@@ -242,7 +209,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -250,21 +216,11 @@
               <item name="tensorflow_learning" type="b2602c69:ProjectViewProjectNode" />
               <item name="tensorflow_learning" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="tensorflow_learning" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tensorflow_learning" type="462c0819:PsiDirectoryNode" />
-              <item name="mnist" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="tensorflow_learning" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tensorflow_learning" type="462c0819:PsiDirectoryNode" />
-              <item name="mnist" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -289,7 +245,29 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.regression">
+  <component name="RunManager" selected="Python.main">
+    <configuration name="模型的保存" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="tensorflow_learning" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/模型的保存.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="RNN" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="tensorflow_learning" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -348,28 +326,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/RNN例子.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="模型的保存" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="tensorflow_learning" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/模型的保存.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -467,6 +423,7 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python.模型的保存" />
       <item itemvalue="Python.RNN" />
       <item itemvalue="Python.numpy_test1" />
       <item itemvalue="Python.convolutional" />
@@ -522,18 +479,25 @@
       <option name="project" value="LOCAL" />
       <updated>1541398181442</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="web于tensorflow使用">
+      <created>1541413983759</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1541413983759</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="139" y="65" width="1153" height="897" extended-state="0" />
+    <frame x="212" y="89" width="1153" height="897" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.252516" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.2516011" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.42257217" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.50877196" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -550,6 +514,29 @@
       <window_info anchor="right" auto_hide="true" x="466" y="185" width="398" height="487" id="SciView" order="3" show_stripe_button="false" type="FLOATING" weight="0.32919767" />
       <window_info anchor="right" id="Database" order="4" />
     </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" weight="0.25192803" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.0634278" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.3286119" />
+      <window_info anchor="bottom" id="Terminal" order="11" />
+      <window_info anchor="bottom" id="Python Console" order="12" weight="0.3286517" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" auto_hide="true" x="466" y="185" width="398" height="487" id="SciView" order="3" show_stripe_button="false" type="FLOATING" weight="0.32919767" />
+      <window_info anchor="right" id="Database" order="4" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -592,9 +579,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1230">
           <caret line="43" column="21" selection-start-line="43" selection-start-column="15" selection-end-line="43" selection-end-column="21" />
-          <folding>
-            <element signature="e#80#103#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -609,9 +593,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1470">
           <caret line="52" column="25" selection-start-line="52" selection-start-column="25" selection-end-line="52" selection-end-column="25" />
-          <folding>
-            <element signature="e#79#102#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -619,9 +600,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="930">
           <caret line="32" column="47" selection-start-line="32" selection-start-column="47" selection-end-line="32" selection-end-column="47" />
-          <folding>
-            <element signature="e#80#103#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -629,9 +607,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2070">
           <caret line="70" column="33" selection-start-line="70" selection-start-column="33" selection-end-line="70" selection-end-column="33" />
-          <folding>
-            <element signature="e#78#101#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -661,23 +636,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/卷积神经网络应用于MNIST数据集分类.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="39" column="47" selection-start-line="39" selection-start-column="47" selection-end-line="39" selection-end-column="47" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/卷积神经网络.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
           <caret line="44" column="58" selection-start-line="44" selection-start-column="58" selection-end-line="44" selection-end-column="58" />
-          <folding>
-            <element signature="e#80#103#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -693,20 +655,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mnist/model.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="48" column="22" selection-start-line="48" selection-start-column="15" selection-end-line="48" selection-end-column="22" />
-          <folding>
-            <marker date="1541408560127" expanded="true" signature="44:49" ph="..." />
-            <marker date="1541408560127" expanded="true" signature="241:1560" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/main.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/mnist/input_data.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -714,68 +662,97 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/main.js">
+    <entry file="file://$PROJECT_DIR$/mnist/covolutional.py" />
+    <entry file="file://E:/anaconda/envs/tensorflow/Lib/site-packages/flask/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4096">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
+        <state relative-caret-position="344">
+          <caret line="942" column="50" selection-start-line="942" selection-start-column="43" selection-end-line="942" selection-end-column="50" />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="22" column="36" lean-forward="true" selection-start-line="22" selection-start-column="36" selection-end-line="22" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/bootstrap.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-594" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/static/js/jquery.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret lean-forward="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-825">
+          <caret line="38" column="36" selection-start-line="38" selection-start-column="25" selection-end-line="38" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2194">
+          <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mnist/regression.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="23" column="53" selection-start-line="23" selection-start-column="53" selection-end-line="23" selection-end-column="53" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://E:/anaconda/envs/tensorflow/Lib/site-packages/flask/app.py">
+    <entry file="file://$PROJECT_DIR$/mnist/convolutional.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="942" column="50" selection-start-line="942" selection-start-column="43" selection-end-line="942" selection-end-column="50" />
+        <state relative-caret-position="330">
+          <caret line="13" column="95" selection-start-line="13" selection-end-line="13" selection-end-column="95" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mnist/model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1155">
+          <caret line="35" column="32" selection-start-line="35" selection-start-column="32" selection-end-line="35" selection-end-column="32" />
+          <folding>
+            <marker date="1541408560127" expanded="true" signature="44:49" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/卷积神经网络应用于MNIST数据集分类.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2343">
+          <caret line="72" column="41" selection-start-line="72" selection-start-column="40" selection-end-line="72" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="31" column="12" lean-forward="true" selection-start-line="31" selection-start-column="12" selection-end-line="31" selection-end-column="12" />
+        <state relative-caret-position="269">
+          <caret line="12" column="37" lean-forward="true" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="37" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
             <marker date="1541413352047" expanded="true" signature="597:602" ph="..." />
             <marker date="1541413352047" expanded="true" signature="690:695" ph="..." />
             <marker date="1541413352047" expanded="true" signature="853:858" ph="..." />
             <marker date="1541413352047" expanded="true" signature="1082:1126" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mnist/covolutional.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mnist/convolutional.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="33">
-          <caret line="13" column="95" lean-forward="true" selection-start-line="13" selection-end-line="13" selection-end-column="95" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mnist/regression.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="99">
-          <caret line="12" column="7" lean-forward="true" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
