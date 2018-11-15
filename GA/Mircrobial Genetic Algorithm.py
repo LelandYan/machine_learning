@@ -15,7 +15,7 @@ X_BOUND = [0, 5]
 
 
 # to find the maximum of this function
-def F(x): return np.sin(10 * x) + np.cos(2 * x) * x
+def F(x): return np.sin(10 * x) * x + np.cos(2 * x) * x
 
 
 class MGA(object):

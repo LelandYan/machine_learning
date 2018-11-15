@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 DNA_SIZE = 10  # DNA length
-POP_SIZE = 100  # population size
+POP_SIZE = 20  # population size
 CROSS_RATE = 0.8  # mating probability(DNA crossover)
 MUTATION_RATE = 0.003  # mutation probability
 N_GENERATIONS = 200
