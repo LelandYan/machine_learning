@@ -1,9 +1,9 @@
 import numpy as np
 
-TARGET_PHRASE = "LelandYan"       # target DNA
-POP_SIZE = 300                      # population size
-CROSS_RATE = 0.4                    # mating probability (DNA crossover)
-MUTATION_RATE = 0.01                # mutation probability
+TARGET_PHRASE = "2139637"  # target DNA
+POP_SIZE = 300  # population size
+CROSS_RATE = 0.4  # mating probability (DNA crossover)
+MUTATION_RATE = 0.01  # mutation probability
 N_GENERATIONS = 10000
 
 DNA_SIZE = len(TARGET_PHRASE)
@@ -22,23 +22,23 @@ class GA(object):
 
         self.pop = np.random.randint(*DNA_bound, size=(pop_size, DNA_size)).astype(np.int8)  # int8 for convert to ASCII
 
-    def translateDNA(self, DNA):                 # convert to readable string
+    def translateDNA(self, DNA):  # convert to readable string
         return DNA.tostring().decode('ascii')
 
-    def get_fitness(self):                      # count how many character matches
+    def get_fitness(self):  # count how many character matches
         match_count = (self.pop == TARGET_ASCII).sum(axis=1)
         return match_count
 
     def select(self):
-        fitness = self.get_fitness() + 1e-4     # add a small amount to avoid all zero fitness
-        idx = np.random.choice(np.arange(self.pop_size), size=self.pop_size, replace=True, p=fitness/fitness.sum())
+        fitness = self.get_fitness() + 1e-4  # add a small amount to avoid all zero fitness
+        idx = np.random.choice(np.arange(self.pop_size), size=self.pop_size, replace=True, p=fitness / fitness.sum())
         return self.pop[idx]
 
     def crossover(self, parent, pop):
         if np.random.rand() < self.cross_rate:
-            i_ = np.random.randint(0, self.pop_size, size=1)                        # select another individual from pop
-            cross_points = np.random.randint(0, 2, self.DNA_size).astype(np.bool)   # choose crossover points
-            parent[cross_points] = pop[i_, cross_points]                            # mating and produce one child
+            i_ = np.random.randint(0, self.pop_size, size=1)  # select another individual from pop
+            cross_points = np.random.randint(0, 2, self.DNA_size).astype(np.bool)  # choose crossover points
+            parent[cross_points] = pop[i_, cross_points]  # mating and produce one child
         return parent
 
     def mutate(self, child):
@@ -55,6 +55,7 @@ class GA(object):
             child = self.mutate(child)
             parent[:] = child
         self.pop = pop
+
 
 if __name__ == '__main__':
     ga = GA(DNA_size=DNA_SIZE, DNA_bound=ASCII_BOUND, cross_rate=CROSS_RATE,
