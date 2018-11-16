@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a661dfef-cf3f-4b65-8db9-4b94e0333aa5" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/GA/ALL-AML_train.arff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GA/GA算法.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GA/data_translate.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GA/Mircrobial Genetic Algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/GA/Mircrobial Genetic Algorithm.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -13,14 +15,16 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/tensorflow_learning$numpy_test1.coverage" NAME="numpy_test1 Coverage Results" MODIFIED="1541175121424" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/numpy_learning" />
+    <SUITE FILE_PATH="coverage/tensorflow_learning$GA.coverage" NAME="GA算法 Coverage Results" MODIFIED="1542373779425" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/GA" />
     <SUITE FILE_PATH="coverage/tensorflow_learning$RNN.coverage" NAME="RNN例子 Coverage Results" MODIFIED="1541173415262" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/tensorflow_learning$convolutional.coverage" NAME="convolutional Coverage Results" MODIFIED="1541408560164" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/mnist" />
     <SUITE FILE_PATH="coverage/tensorflow_learning$regression.coverage" NAME="regression Coverage Results" MODIFIED="1541413767237" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/mnist" />
     <SUITE FILE_PATH="coverage/tensorflow_learning$Ex_01.coverage" NAME="Ex_01 Coverage Results" MODIFIED="1541851985381" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/GA" />
+    <SUITE FILE_PATH="coverage/tensorflow_learning$data_translate.coverage" NAME="data_translate Coverage Results" MODIFIED="1542372368281" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/GA" />
     <SUITE FILE_PATH="coverage/tensorflow_learning$test.coverage" NAME="test Coverage Results" MODIFIED="1541844502451" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/GA" />
     <SUITE FILE_PATH="coverage/tensorflow_learning$overfittingTest.coverage" NAME="overfittingTest Coverage Results" MODIFIED="1540914206952" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/tensorflow_learning$main.coverage" NAME="main Coverage Results" MODIFIED="1541414657296" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/tensorflow_learning$Mircrobial_Genetic_Algorithm.coverage" NAME="Mircrobial Genetic Algorithm Coverage Results" MODIFIED="1542347292516" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/GA" />
+    <SUITE FILE_PATH="coverage/tensorflow_learning$Mircrobial_Genetic_Algorithm.coverage" NAME="Mircrobial Genetic Algorithm Coverage Results" MODIFIED="1542347686992" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/GA" />
     <SUITE FILE_PATH="coverage/tensorflow_learning$_Ex_02.coverage" NAME="句子的匹配_Ex_02 Coverage Results" MODIFIED="1542100001893" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/GA" />
     <SUITE FILE_PATH="coverage/tensorflow_learning$.coverage" NAME="模型的保存 Coverage Results" MODIFIED="1541000983509" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/tensorflow_learning$classification.coverage" NAME="classification Coverage Results" MODIFIED="1540908943572" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -68,11 +72,13 @@
     <session id="802092400">
       <usages-collector id="statistics.file.extensions.open">
         <counts>
+          <entry key="arff" value="1" />
           <entry key="css" value="1" />
+          <entry key="csv" value="2" />
           <entry key="html" value="1" />
           <entry key="js" value="6" />
           <entry key="md" value="4" />
-          <entry key="py" value="22" />
+          <entry key="py" value="24" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -81,14 +87,15 @@
           <entry key="HTML" value="1" />
           <entry key="JavaScript" value="6" />
           <entry key="Markdown" value="4" />
-          <entry key="Python" value="22" />
+          <entry key="PLAIN_TEXT" value="3" />
+          <entry key="Python" value="24" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="11" />
           <entry key="md" value="212" />
-          <entry key="py" value="6649" />
+          <entry key="py" value="7897" />
           <entry key="txt" value="10" />
         </counts>
       </usages-collector>
@@ -96,7 +103,7 @@
         <counts>
           <entry key="Markdown" value="212" />
           <entry key="PLAIN_TEXT" value="21" />
-          <entry key="Python" value="6649" />
+          <entry key="Python" value="7897" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
@@ -117,8 +124,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GA/寻找函数的最高点_Ex_01.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="39" column="27" selection-start-line="39" selection-start-column="15" selection-end-line="39" selection-end-column="27" />
+            <state relative-caret-position="-1331">
+              <caret line="26" column="10" selection-start-line="26" selection-start-column="4" selection-end-line="26" selection-end-column="10" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
                 <marker date="1542282763072" expanded="true" signature="437:442" ph="..." />
@@ -134,23 +141,11 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/GA/Ex_01.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor>
-                <caret column="6" selection-start-column="6" selection-end-column="6" />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GA/GA.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
               <first_editor relative-caret-position="66">
-                <caret line="2" column="38" lean-forward="true" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="38" />
+                <caret line="2" column="38" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="38" />
               </first_editor>
               <second_editor />
             </state>
@@ -161,7 +156,7 @@
         <entry file="file://$PROJECT_DIR$/GA/句子的匹配_Ex_02.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-33">
-              <caret line="5" column="44" lean-forward="true" selection-start-line="5" selection-start-column="44" selection-end-line="5" selection-end-column="44" />
+              <caret line="5" column="44" selection-start-line="5" selection-start-column="44" selection-end-line="5" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -170,7 +165,7 @@
         <entry file="file://$PROJECT_DIR$/GA/最短路径_Ex_03.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="165">
-              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+              <caret line="5" selection-start-line="5" selection-end-line="5" />
               <folding>
                 <element signature="e#79#110#0" expanded="true" />
               </folding>
@@ -178,16 +173,53 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GA/Mircrobial Genetic Algorithm.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="754">
-              <caret line="59" column="51" lean-forward="true" selection-start-line="59" selection-start-column="51" selection-end-line="59" selection-end-column="51" />
+            <state relative-caret-position="2079">
+              <caret line="63" column="54" selection-start-line="63" selection-start-column="54" selection-end-line="63" selection-end-column="54" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
-                <marker date="1542347423769" expanded="true" signature="396:401" ph="..." />
+                <marker date="1542347716754" expanded="true" signature="396:401" ph="..." />
               </folding>
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GA/data_translate.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="100">
+              <caret line="25" column="17" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GA/ALL-AML_train.csv">
+          <provider selected="true" editor-type-id="LargeFileEditor">
+            <state relative-caret-position="11352">
+              <caret line="344" column="45" selection-start-line="344" selection-start-column="45" selection-end-line="344" selection-end-column="45" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/GA/GA算法.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="345">
+              <caret line="179" column="50" lean-forward="true" selection-start-line="179" selection-start-column="50" selection-end-line="179" selection-end-column="50" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GA/ALL-AML_train.arff">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-236354" />
           </provider>
         </entry>
       </file>
@@ -239,6 +271,8 @@
         <option value="$PROJECT_DIR$/GA/寻找函数的最高点_Ex_01.py" />
         <option value="$PROJECT_DIR$/GA/GA.md" />
         <option value="$PROJECT_DIR$/GA/Mircrobial Genetic Algorithm.py" />
+        <option value="$PROJECT_DIR$/GA/data_translate.py" />
+        <option value="$PROJECT_DIR$/GA/GA算法.py" />
       </list>
     </option>
   </component>
@@ -249,8 +283,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="351" />
-    <option name="y" value="42" />
+    <option name="x" value="424" />
+    <option name="y" value="14" />
     <option name="width" value="1252" />
     <option name="height" value="796" />
   </component>
@@ -287,6 +321,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\tensorflow_learning\GA" />
       <recent name="D:\tensorflow_learning\static\js" />
       <recent name="D:\tensorflow_learning" />
     </key>
@@ -415,8 +450,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Mircrobial Genetic Algorithm">
-    <configuration name="Ex_01" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.GA算法">
+    <configuration name="GA算法" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="tensorflow_learning" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -429,7 +464,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="D:\tensorflow_learning\GA\寻找函数的最高点_Ex_01.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/GA/GA算法.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -504,7 +539,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="data_translate" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="tensorflow_learning" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -517,7 +552,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/GA/test.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/GA/data_translate.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -527,19 +562,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.Ex_01" />
-      <item itemvalue="Python.test" />
       <item itemvalue="Python.句子的匹配_Ex_02" />
       <item itemvalue="Python.寻找函数的最高点_Ex_01" />
       <item itemvalue="Python.Mircrobial Genetic Algorithm" />
+      <item itemvalue="Python.data_translate" />
+      <item itemvalue="Python.GA算法" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.GA算法" />
+        <item itemvalue="Python.data_translate" />
         <item itemvalue="Python.Mircrobial Genetic Algorithm" />
         <item itemvalue="Python.寻找函数的最高点_Ex_01" />
         <item itemvalue="Python.句子的匹配_Ex_02" />
-        <item itemvalue="Python.Ex_01" />
-        <item itemvalue="Python.test" />
       </list>
     </recent_temporary>
   </component>
@@ -607,15 +642,14 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
-    <editor active="true" />
+    <frame x="424" y="14" width="1252" height="796" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49657536" weight="0.14932886" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49657536" weight="0.17197986" />
       <window_info id="Structure" order="1" sideWeight="0.5019841" side_tool="true" weight="0.25083894" />
       <window_info id="Favorites" order="2" sideWeight="0.50342464" side_tool="true" weight="0.21079692" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.0634278" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.30408472" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -874,7 +908,7 @@
     <entry file="file://$PROJECT_DIR$/GA/最短路径_Ex_03.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
           <folding>
             <element signature="e#79#110#0" expanded="true" />
           </folding>
@@ -895,7 +929,7 @@
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="66">
-            <caret line="2" column="38" lean-forward="true" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="38" />
+            <caret line="2" column="38" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="38" />
           </first_editor>
           <second_editor />
         </state>
@@ -904,7 +938,7 @@
     <entry file="file://$PROJECT_DIR$/GA/句子的匹配_Ex_02.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-33">
-          <caret line="5" column="44" lean-forward="true" selection-start-line="5" selection-start-column="44" selection-end-line="5" selection-end-column="44" />
+          <caret line="5" column="44" selection-start-line="5" selection-start-column="44" selection-end-line="5" selection-end-column="44" />
         </state>
       </provider>
     </entry>
@@ -924,8 +958,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/GA/寻找函数的最高点_Ex_01.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="39" column="27" selection-start-line="39" selection-start-column="15" selection-end-line="39" selection-end-column="27" />
+        <state relative-caret-position="-1331">
+          <caret line="26" column="10" selection-start-line="26" selection-start-column="4" selection-end-line="26" selection-end-column="10" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
             <marker date="1542282763072" expanded="true" signature="437:442" ph="..." />
@@ -941,11 +975,40 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/GA/Mircrobial Genetic Algorithm.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="754">
-          <caret line="59" column="51" lean-forward="true" selection-start-line="59" selection-start-column="51" selection-end-line="59" selection-end-column="51" />
+        <state relative-caret-position="2079">
+          <caret line="63" column="54" selection-start-line="63" selection-start-column="54" selection-end-line="63" selection-end-column="54" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <marker date="1542347423769" expanded="true" signature="396:401" ph="..." />
+            <marker date="1542347716754" expanded="true" signature="396:401" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GA/ALL-AML_train.arff">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-236354" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GA/data_translate.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="25" column="17" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GA/ALL-AML_train.csv">
+      <provider selected="true" editor-type-id="LargeFileEditor">
+        <state relative-caret-position="11352">
+          <caret line="344" column="45" selection-start-line="344" selection-start-column="45" selection-end-line="344" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GA/GA算法.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="179" column="50" lean-forward="true" selection-start-line="179" selection-start-column="50" selection-end-line="179" selection-end-column="50" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
