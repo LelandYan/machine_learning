@@ -15,6 +15,7 @@ X_BOUND = [0, 5]
 
 
 # to find the maximum of this function
+# 目标函数
 def F(x): return np.sin(10 * x) * x + np.cos(2 * x) * x
 
 
