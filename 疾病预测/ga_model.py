@@ -114,8 +114,8 @@ for _ in range(N_GENERATIONS):
 
     # GA part(evolution)
     # fitness = get_fitness(F_values)
-    fitness = np.array(fitness)
-    print("Most fitted DNA: ", pop[np.argmax(fitness), :], translateDNA(pop[np.argmax(fitness), :]))
+    fitness = np.array(accuracy_list)
+    print("Most fitted DNA: ",np.max(accuracy_list))
     pop = select(pop, fitness)
     pop_copy = pop.copy()
     for parent in pop:
