@@ -29,9 +29,42 @@ def translateDNA(pop):
 
 # nature selection wrt pop fitness
 def select(pop, fitness):
-    idx = np.random.choice(np.arange(POP_SIZE), size=POP_SIZE, replace=True, p=fitness / fitness.sum())
-    return pop[idx]
+    sorted_index = np.argsort(fitness)
+    sorted_pop = pop[sorted_index]
+    sorted_fitness = fitness[sorted_index]
 
+    idx = np.random.choice(np.arange(POP_SIZE), size=POP_SIZE, replace=True, p=fitness / fitness.sum())
+    return pop[idx],fitness
+
+
+def select_gamble(pop, fitness):
+    # sort by fitness
+    sorted_index = np.argsort(fitness)
+    sorted_pop = pop[sorted_index]
+    sorted_fitness = fitness[sorted_index]
+
+
+    # out the time queue
+    total_fitness = np.sum(fitness)
+    accumulation = sorted_fitness / total_fitness
+
+    # roulette wheel selection
+    roulette_index = []
+    for i in  range(POP_SIZE):
+        p = np.random.rand()
+        for j in accumulation:
+            if int(accumulation[j]) > p:
+                roulette_index.append(j)
+                break
+    new_pop = []
+    new_fitness = []
+    for i in roulette_index:
+        new_pop.append(sorted_pop[i])
+        new_fitness.append(sorted_fitness[i])
+
+    new_pop = np.array(new_pop)
+    new_fitness = np.array(new_fitness)
+    return new_pop,new_fitness
 
 # mating process (genes crossover)
 def crossover(parent, pop):
@@ -69,8 +102,8 @@ for _ in range(N_GENERATIONS):
 
     # GA part(evolution)
     fitness = get_fitness(F_values)
-    print("Most fitted DNA: ", pop[np.argmax(fitness), :],translateDNA(pop[np.argmax(fitness), :]))
-    pop = select(pop, fitness)
+    print("Most fitted DNA: ", pop[np.argmax(fitness), :], translateDNA(pop[np.argmax(fitness), :]))
+    pop,fitness = select_gamble(pop, fitness)
     pop_copy = pop.copy()
     for parent in pop:
         child = crossover(parent, pop_copy)
