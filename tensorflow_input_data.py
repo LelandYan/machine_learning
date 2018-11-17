@@ -16,7 +16,8 @@ x,y = datasets.make_classification(n_samples=500,n_features=n_features,
                         n_redundant=0, n_informative=1,
                         n_classes=n_classes,n_clusters_per_class=1)
 train_x,test_x,train_y,test_y = train_test_split(x,y,test_size=0.3)
-
+print(train_x.shape)
+print(train_y.shape)
 
 
 x_min, x_max = x[:, 0].min() - .5, x[:, 0].max() + .5

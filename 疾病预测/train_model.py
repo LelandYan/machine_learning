@@ -4,5 +4,73 @@ __date__ = '2018/11/17 20:03'
 
 import tensorflow as tf
 import numpy as np
-import matplotlib.pyplot as plt
+import pandas as pd
+from sklearn.model_selection import train_test_split
 
+n_classes = 2
+batch_size = 10
+
+CSV_FILE_PATH = 'csv_result-ALL-AML_train.csv'
+df = pd.read_csv(CSV_FILE_PATH)
+shapes = df.values.shape
+
+data = df.values[:,1:shapes[1]-1]
+result = df.values[:,shapes[1]-1:shapes[1]]
+train_x,test_x,train_y,test_y = train_test_split(data,result,test_size=0.3)
+n_features = train_x.shape[1]
+train_y = np.array(train_y.flatten())
+test_y = np.array(test_y.flatten())
+def get_batch(x, y, batch):
+    n_samples = len(x)
+    for i in range(batch, n_samples, batch):
+        yield x[i - batch:i], y[i - batch:i]
+
+
+x_input = tf.placeholder(tf.float32, shape=[None, n_features], name='x_input')
+y_input = tf.placeholder(tf.int32, shape=[None], name='y_input')
+
+W1 = tf.Variable(tf.truncated_normal([n_features, 10]), name='W')
+b1 = tf.Variable(tf.zeros([10]) + 0.1, name='b')
+
+logits1 = tf.sigmoid(tf.matmul(x_input, W1) + b1)
+
+W = tf.Variable(tf.truncated_normal([10, n_classes]), name='W')
+b = tf.Variable(tf.zeros([n_classes]), name='b')
+
+logits = tf.sigmoid(tf.matmul(logits1, W) + b)
+
+
+
+
+predict = tf.arg_max(logits, 1, name='predict')
+loss = tf.losses.sparse_softmax_cross_entropy(logits=logits, labels=y_input)
+loss = tf.reduce_mean(loss)
+optimizer = tf.train.AdamOptimizer(0.01).minimize(loss)
+acc, acc_op = tf.metrics.accuracy(labels=y_input, predictions=predict)
+
+with tf.Session() as sess:
+    sess.run(tf.global_variables_initializer())
+    sess.run(tf.local_variables_initializer())
+    step = 0
+    for epoch in range(200):  # 训练次数
+        for tx, ty in get_batch(train_x, train_y, batch_size):  # 得到一个batch的数据
+            print(train_x.shape)
+            print(tx.shape)
+            step += 1
+            loss_value, _, acc_value = sess.run([loss, optimizer, acc_op],feed_dict={x_input: tx, y_input: ty})
+            print('loss = {}, acc = {}'.format(loss_value, acc_value))
+    acc_value = sess.run([acc_op], feed_dict={x_input: test_x, y_input: test_y})
+    print('val acc = {}'.format(acc_value))
+    # prob = sess.run([logits], feed_dict={x_input: np.c_[xx.ravel(), yy.ravel()]})
+    # prob = prob[0][:, 0].reshape(xx.shape)
+    #
+    # plt.scatter(train_x[:, 0], train_x[:, 1], marker='o', c=train_y,
+    #             s=25, edgecolor='k')
+    #
+    # # filled contours
+    # cm = plt.cm.RdBu
+    # plt.contourf(xx, yy, prob, cmap=cm, alpha=.3)
+
+    # contour lines
+    # plt.contour(xx, yy, prob, colors='k')
+    # plt.show()
