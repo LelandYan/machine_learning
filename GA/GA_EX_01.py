@@ -36,7 +36,7 @@ def select(pop, fitness):
 # roulette wheel selection
 def select_gamble(pop, fitness):
     # sort by fitness
-    sorted_index = np.argsort(fitness)  # 100,
+    sorted_index = np.argsort(fitness)
     sorted_pop = pop[sorted_index]  # 100,22
     sorted_fitness = fitness[sorted_index]  # 100,
     # out the time queue
@@ -103,7 +103,7 @@ for _ in range(N_GENERATIONS):
     # GA part(evolution)
     fitness = get_fitness(F_values)
     print("Most fitted DNA: ", pop[np.argmax(fitness), :], translateDNA(pop[np.argmax(fitness), :]))
-    pop = select(pop, fitness)
+    pop = select_gamble(pop, fitness)
     pop_copy = pop.copy()
     for parent in pop:
         child = crossover(parent, pop_copy)
