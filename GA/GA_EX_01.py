@@ -3,6 +3,7 @@ __author__ = 'LelandYan'
 __date__ = '2018/11/15 0:15'
 import numpy as np
 import matplotlib.pyplot as plt
+import tensorflow as tf
 
 DNA_SIZE = 22  # DNA length
 POP_SIZE = 100  # population size
