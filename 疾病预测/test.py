@@ -5,6 +5,7 @@ __date__ = '2018/11/17 20:29'
 import pandas as pd
 from sklearn.model_selection import train_test_split
 import numpy as np
+import model
 
 CSV_FILE_PATH = 'csv_result-ALL-AML_train.csv'
 df = pd.read_csv(CSV_FILE_PATH)

@@ -1,30 +1,47 @@
 # _*_ coding: utf-8 _*_
 __author__ = 'LelandYan'
-__date__ = '2018/11/17 21:36'
+__date__ = '2018/11/17 23:02'
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+import model
 
-DNA_SIZE = 22  # DNA length
-POP_SIZE = 100  # population size
+CSV_FILE_PATH = 'csv_result-ALL-AML_train.csv'
+df = pd.read_csv(CSV_FILE_PATH)
+shapes = df.values.shape
+data = df.values[:, 1:shapes[1] - 1]
+result = df.values[:, shapes[1] - 1:shapes[1]]
+value_len = data.shape[1]
+pop_len = result.shape[0]
+
+DNA_SIZE = value_len  # DNA length
+POP_SIZE = pop_len  # population size
 CROSS_RATE = 0.8  # mating probability(DNA crossover)
 MUTATION_RATE = 0.003  # mutation probability
 N_GENERATIONS = 200
 X_BOUND = [-1, 2]  # x upper and lower bounds
 
+
 # to find the maximum of this function
 # def F(x): return np.sin(10 * x) * x + np.cos(2 * x) * x
-def F(x): return x * np.sin(10 * np.pi * x) + 2.0
+# def F(x): return x * np.sin(10 * np.pi * x) + 2.0
 
 
 # find non-zero fitness for selection
 def get_fitness(pred):
-    return pred + 1e-3 - np.min(pred)
+    return pred
 
 
 # convert binary DNA to decimal and normalize it to a rang(0,5)
 def translateDNA(pop):
-    return pop.dot(2 ** np.arange(DNA_SIZE)[::-1]) / float(2 ** DNA_SIZE - 1) * (X_BOUND[1] - X_BOUND[0]) + X_BOUND[0]
+    # return pop.dot(2 ** np.arange(DNA_SIZE)[::-1]) / float(2 ** DNA_SIZE - 1) * (X_BOUND[1] - X_BOUND[0]) + X_BOUND[0]
+    select_value = pop.astype(np.bool)
+    for i in select_value:
+        data[i] = data[select_value]
+    return data
+
+
 
 
 # nature selection wrt pop fitness
@@ -87,24 +104,19 @@ def mutate(child):
 
 # initialize the pop DNA
 pop = np.random.randint(2, size=(POP_SIZE, DNA_SIZE))
-plt.ion()
-x = np.linspace(*X_BOUND, 200)
-plt.plot(x, F(x))
 
 for _ in range(N_GENERATIONS):
     # compute function value by extracting DNA
-    F_values = F(translateDNA(pop))
-
-    # something about plotting
-    if 'sca' in globals(): sca.remove()
-    sca = plt.scatter(translateDNA(pop), F_values, s=200, lw=0, c='red', alpha=0.5)
-    plt.pause(0.05)
+    #F_values = translateDNA(pop)
+    data = data[:,pop[0]]
+    accuracy_list = []
+    accuracy_list.append(model.Neural_Network().__int__(data))
 
     # GA part(evolution)
-    fitness = get_fitness(F_values)
-    print(fitness.shape)
+    # fitness = get_fitness(F_values)
+    fitness = np.array(fitness)
     print("Most fitted DNA: ", pop[np.argmax(fitness), :], translateDNA(pop[np.argmax(fitness), :]))
-    pop = select_gamble(pop, fitness)
+    pop = select(pop, fitness)
     pop_copy = pop.copy()
     for parent in pop:
         child = crossover(parent, pop_copy)
