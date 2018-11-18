@@ -2,7 +2,6 @@
 __author__ = 'LelandYan'
 __date__ = '2018/11/17 23:02'
 
-import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import model
@@ -10,9 +9,9 @@ import model
 CSV_FILE_PATH = 'csv_result-colonTumor.csv'
 df = pd.read_csv(CSV_FILE_PATH)
 shapes = df.values.shape
-data = df.values[:, 1:shapes[1] - 1]
+input_data = df.values[:, 1:shapes[1] - 1]
 result = df.values[:, shapes[1] - 1:shapes[1]]
-value_len = data.shape[1]
+value_len = input_data.shape[1]
 pop_len = result.shape[0]
 
 DNA_SIZE = value_len  # DNA length
@@ -30,10 +29,21 @@ def get_fitness(pred):
 # convert binary DNA to decimal and normalize it to a rang(0,5)
 def translateDNA(pop):
     # return pop.dot(2 ** np.arange(DNA_SIZE)[::-1]) / float(2 ** DNA_SIZE - 1) * (X_BOUND[1] - X_BOUND[0]) + X_BOUND[0]
-    select_value = pop.astype(np.bool)
-    for i in select_value:
-        data[i] = data[select_value]
-    return data
+    # select_value = pop.astype(np.bool)
+    # for i in select_value:
+    #     data[i] = data[select_value]
+    # return data
+    # cnt = 0
+    # if pop[0] == 1:
+    #     pop[0] = 0
+    #     cnt += 1
+    # for i in range(len(pop)):
+    #     if i != 0:
+    index_list = []
+    for i in range(len(pop)):
+        if pop[i] == 1:
+            index_list.append(i)
+    return index_list
 
 
 # nature selection wrt pop fitness
@@ -94,34 +104,38 @@ def mutate(child):
     return child
 
 
-
-
-# pop = np.random.randint(2, size=(POP_SIZE, DNA_SIZE))
+pop = np.random.randint(2, size=(POP_SIZE, DNA_SIZE))
 # for i in pop:
 #     for j in pop[i]:
 #         if np.random.rand() >= 0.1:
 #             pop[i][j] = 0
 
 # initialize the pop DNA
-pop = np.zeros((POP_SIZE, DNA_SIZE))
-pop = np.full(pop.shape, 0)
-count = 1
-for i in pop:
-    for j in pop[i]:
-        if count > 0.005*DNA_SIZE:
-            if np.random.rand() >= 0.2:
-                pop[i][j] = 1
-                count += 1
+# pop = np.zeros((POP_SIZE, DNA_SIZE))
+# pop = np.full(pop.shape, 0)
+# count = 1
+#
+# for i in pop:
+#     for j in pop[i]:
+#         if count > 0.005 * DNA_SIZE:
+#             if np.random.rand() < 0.8:
+#                 pop[i][j] = 1
+#                 count += 1
 
-
+# pop = pop.astype(np.bool)
+# print(pop)
 for _ in range(N_GENERATIONS):
     accuracy_list = []
-    for i in range(data.shape[0]):
-        data = data[:, pop[i]]
+    feature_list = []
+    for i in range(input_data.shape[0]):
+        data = input_data[:, translateDNA(pop[i])]
+        # data = data[:, pop[i]]
+        feature_list.append(np.sum(pop, axis=1)[0])
         accuracy_list.append(model.Neural_Network().__int__(data, result)[0])
     # GA part(evolution)
     fitness = np.array(accuracy_list)
-    print("accuracy:", np.max(accuracy_list))
+    features = np.array(feature_list)
+    print("accuracy: ", np.max(accuracy_list), " features: ", features[np.argmax(accuracy_list)])
     pop = select_gamble(pop, fitness)
     pop_copy = pop.copy()
     for parent in pop:

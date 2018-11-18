@@ -13,6 +13,7 @@ X_BOUND = [0, 5]  # x upper and lower bounds
 def F(x): return np.sin(10 * x) * x + np.cos(2 * x) * x
 
 
+
 # find non-zero fitness for selection
 def get_fitness(pred):
     return pred + 1e-3 - np.min(pred)

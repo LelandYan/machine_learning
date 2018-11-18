@@ -4,7 +4,6 @@ __date__ = '2018/11/17 21:38'
 
 import tensorflow as tf
 import numpy as np
-import pandas as pd
 from sklearn.model_selection import train_test_split
 
 
@@ -14,10 +13,10 @@ class Neural_Network(object):
         for i in range(batch, n_samples, batch):
             yield x[i - batch:i], y[i - batch:i]
 
-    def __int__(self,data,result):
+    def __int__(self, data, result):
         self.n_classes = 2
         self.batch_size = 10
-        #self.df = pd.read_csv('csv_result-ALL-AML_train.csv')
+        # self.df = pd.read_csv('csv_result-ALL-AML_train.csv')
         # self.shapes = self.df.values.shape
         # self.data = self.df.values[:, 1:self.shapes[1] - 1]
         # self.result = self.df.values[:, self.shapes[1] - 1:self.shapes[1]]
@@ -39,7 +38,7 @@ class Neural_Network(object):
         W = tf.Variable(tf.truncated_normal([10, self.n_classes]), name='W2')
         b = tf.Variable(tf.zeros([self.n_classes]), name='b2')
 
-        logits = tf.sigmoid(tf.matmul(logits1, W) + b)
+        logits = tf.nn.softmax(tf.matmul(logits1, W) + b)  # 优化一
         predict = tf.arg_max(logits, 1, name='predict')
         loss = tf.losses.sparse_softmax_cross_entropy(logits=logits, labels=self.y_input)
         self.loss = tf.reduce_mean(loss)
@@ -54,9 +53,7 @@ class Neural_Network(object):
                     step += 1
                     loss_value, _, acc_value = sess.run([self.loss, self.optimizer, self.acc_op],
                                                         feed_dict={self.x_input: self.tx, self.y_input: self.ty})
-                    #print('loss = {}, acc = {}'.format(loss_value, acc_value))
+                    # print('loss = {}, acc = {}'.format(loss_value, acc_value))
             acc_value = sess.run([self.acc_op], feed_dict={self.x_input: self.test_x, self.y_input: self.test_y})
-            #print('val acc = {}'.format(acc_value))
+            # print('val acc = {}'.format(acc_value))
             return (acc_value)
-
-
