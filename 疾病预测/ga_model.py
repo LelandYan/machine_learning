@@ -19,13 +19,7 @@ DNA_SIZE = value_len  # DNA length
 POP_SIZE = pop_len  # population size
 CROSS_RATE = 0.8  # mating probability(DNA crossover)
 MUTATION_RATE = 0.003  # mutation probability
-N_GENERATIONS = 20
-# X_BOUND = [-1, 2]  # x upper and lower bounds
-
-
-# to find the maximum of this function
-# def F(x): return np.sin(10 * x) * x + np.cos(2 * x) * x
-# def F(x): return x * np.sin(10 * np.pi * x) + 2.0
+N_GENERATIONS = 10
 
 
 # find non-zero fitness for selection
@@ -40,8 +34,6 @@ def translateDNA(pop):
     for i in select_value:
         data[i] = data[select_value]
     return data
-
-
 
 
 # nature selection wrt pop fitness
@@ -103,25 +95,30 @@ def mutate(child):
 
 
 # initialize the pop DNA
-pop = np.random.randint(2, size=(POP_SIZE, DNA_SIZE))
+# pop = []
+# for i in range(POP_SIZE):
+#     for j in range(DNA_SIZE):
+#         a = []
 
+pop = np.random.randint(2, size=(POP_SIZE, DNA_SIZE))
+for i in pop:
+    for j in pop[i]:
+        if np.random.rand() >= 0.1:
+            pop[i][j] = 0
+# print(pop)
+#pop = np.zeros((POP_SIZE, DNA_SIZE))
+#pop = np.full(pop.shape, 1)
 for _ in range(N_GENERATIONS):
-    # compute function value by extracting DNA
-    #F_values = translateDNA(pop)
     accuracy_list = []
     for i in range(data.shape[0]):
         data = data[:, pop[i]]
         accuracy_list.append(model.Neural_Network().__int__(data, result)[0])
     # GA part(evolution)
-    # fitness = get_fitness(F_values)
     fitness = np.array(accuracy_list)
-    print("accuracy:",np.max(accuracy_list))
-    pop = select(pop, fitness)
+    print("accuracy:", np.max(accuracy_list))
+    pop = select_gamble(pop, fitness)
     pop_copy = pop.copy()
     for parent in pop:
         child = crossover(parent, pop_copy)
         child = mutate(child)
         parent[:] = child
-
-# plt.ioff()
-# plt.show()

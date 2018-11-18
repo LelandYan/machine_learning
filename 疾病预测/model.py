@@ -60,5 +60,3 @@ class Neural_Network(object):
             return (acc_value)
 
 
-if __name__ == '__main__':
-    model = Neural_Network().__int__()
