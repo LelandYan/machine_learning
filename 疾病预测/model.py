@@ -14,13 +14,15 @@ class Neural_Network(object):
         for i in range(batch, n_samples, batch):
             yield x[i - batch:i], y[i - batch:i]
 
-    def __int__(self):
+    def __int__(self,data,result):
         self.n_classes = 2
         self.batch_size = 10
-        self.df = pd.read_csv('csv_result-ALL-AML_train.csv')
-        self.shapes = self.df.values.shape
-        self.data = self.df.values[:, 1:self.shapes[1] - 1]
-        self.result = self.df.values[:, self.shapes[1] - 1:self.shapes[1]]
+        #self.df = pd.read_csv('csv_result-ALL-AML_train.csv')
+        # self.shapes = self.df.values.shape
+        # self.data = self.df.values[:, 1:self.shapes[1] - 1]
+        # self.result = self.df.values[:, self.shapes[1] - 1:self.shapes[1]]
+        self.data = data
+        self.result = result
         self.train_x, self.test_x, self.train_y, self.test_y = train_test_split(self.data, self.result, test_size=0.3)
         self.n_features = self.train_x.shape[1]
         self.train_y = np.array(self.train_y.flatten())
@@ -52,10 +54,10 @@ class Neural_Network(object):
                     step += 1
                     loss_value, _, acc_value = sess.run([self.loss, self.optimizer, self.acc_op],
                                                         feed_dict={self.x_input: self.tx, self.y_input: self.ty})
-                    print('loss = {}, acc = {}'.format(loss_value, acc_value))
+                    #print('loss = {}, acc = {}'.format(loss_value, acc_value))
             acc_value = sess.run([self.acc_op], feed_dict={self.x_input: self.test_x, self.y_input: self.test_y})
-            print('val acc = {}'.format(acc_value))
-            return acc_value
+            #print('val acc = {}'.format(acc_value))
+            return (acc_value)
 
 
 if __name__ == '__main__':

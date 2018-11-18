@@ -19,8 +19,8 @@ DNA_SIZE = value_len  # DNA length
 POP_SIZE = pop_len  # population size
 CROSS_RATE = 0.8  # mating probability(DNA crossover)
 MUTATION_RATE = 0.003  # mutation probability
-N_GENERATIONS = 200
-X_BOUND = [-1, 2]  # x upper and lower bounds
+N_GENERATIONS = 20
+# X_BOUND = [-1, 2]  # x upper and lower bounds
 
 
 # to find the maximum of this function
@@ -108,14 +108,14 @@ pop = np.random.randint(2, size=(POP_SIZE, DNA_SIZE))
 for _ in range(N_GENERATIONS):
     # compute function value by extracting DNA
     #F_values = translateDNA(pop)
-    data = data[:,pop[0]]
     accuracy_list = []
-    accuracy_list.append(model.Neural_Network().__int__(data))
-
+    for i in range(data.shape[0]):
+        data = data[:, pop[i]]
+        accuracy_list.append(model.Neural_Network().__int__(data, result)[0])
     # GA part(evolution)
     # fitness = get_fitness(F_values)
     fitness = np.array(accuracy_list)
-    print("Most fitted DNA: ",np.max(accuracy_list))
+    print("accuracy:",np.max(accuracy_list))
     pop = select(pop, fitness)
     pop_copy = pop.copy()
     for parent in pop:
@@ -123,5 +123,5 @@ for _ in range(N_GENERATIONS):
         child = mutate(child)
         parent[:] = child
 
-plt.ioff()
-plt.show()
+# plt.ioff()
+# plt.show()
