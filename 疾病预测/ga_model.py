@@ -7,7 +7,7 @@ import numpy as np
 import pandas as pd
 import model
 
-CSV_FILE_PATH = 'csv_result-ALL-AML_train.csv'
+CSV_FILE_PATH = 'csv_result-colonTumor.csv'
 df = pd.read_csv(CSV_FILE_PATH)
 shapes = df.values.shape
 data = df.values[:, 1:shapes[1] - 1]
@@ -94,20 +94,26 @@ def mutate(child):
     return child
 
 
-# initialize the pop DNA
-# pop = []
-# for i in range(POP_SIZE):
-#     for j in range(DNA_SIZE):
-#         a = []
 
-pop = np.random.randint(2, size=(POP_SIZE, DNA_SIZE))
+
+# pop = np.random.randint(2, size=(POP_SIZE, DNA_SIZE))
+# for i in pop:
+#     for j in pop[i]:
+#         if np.random.rand() >= 0.1:
+#             pop[i][j] = 0
+
+# initialize the pop DNA
+pop = np.zeros((POP_SIZE, DNA_SIZE))
+pop = np.full(pop.shape, 0)
+count = 1
 for i in pop:
     for j in pop[i]:
-        if np.random.rand() >= 0.1:
-            pop[i][j] = 0
-# print(pop)
-#pop = np.zeros((POP_SIZE, DNA_SIZE))
-#pop = np.full(pop.shape, 1)
+        if count > 0.005*DNA_SIZE:
+            if np.random.rand() >= 0.2:
+                pop[i][j] = 1
+                count += 1
+
+
 for _ in range(N_GENERATIONS):
     accuracy_list = []
     for i in range(data.shape[0]):
