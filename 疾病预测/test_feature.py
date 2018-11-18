@@ -28,17 +28,6 @@ def get_fitness(pred):
 
 # convert binary DNA to decimal and normalize it to a rang(0,5)
 def translateDNA(pop):
-    # return pop.dot(2 ** np.arange(DNA_SIZE)[::-1]) / float(2 ** DNA_SIZE - 1) * (X_BOUND[1] - X_BOUND[0]) + X_BOUND[0]
-    # select_value = pop.astype(np.bool)
-    # for i in select_value:
-    #     data[i] = data[select_value]
-    # return data
-    # cnt = 0
-    # if pop[0] == 1:
-    #     pop[0] = 0
-    #     cnt += 1
-    # for i in range(len(pop)):
-    #     if i != 0:
     index_list = []
     for i in range(len(pop)):
         if pop[i] == 1:
@@ -105,11 +94,6 @@ def mutate(child):
 
 
 # pop = np.random.randint(2, size=(POP_SIZE, DNA_SIZE))
-# for i in pop:
-#     for j in pop[i]:
-#         if np.random.rand() >= 0.1:
-#             pop[i][j] = 0
-
 # initialize the pop DNA
 pop = np.zeros((POP_SIZE, DNA_SIZE))
 pop = np.full(pop.shape, 0)
@@ -117,7 +101,7 @@ count = 1
 
 for i in range(len(pop)):
     for j in range(len(pop[i])):
-        if count <= 0.005 * DNA_SIZE:
+        if count < 0.005 * DNA_SIZE:
             if np.random.rand() < 0.8:
                 pop[i][j] = 1
                 count += 1
