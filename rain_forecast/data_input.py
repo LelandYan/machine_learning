@@ -1,7 +1,5 @@
 import tensorflow as tf
 import numpy as np
-import tensorflow as tf
-import numpy as np
 from sklearn.model_selection import train_test_split
 import pandas as pd
 
@@ -27,11 +25,15 @@ batch_size = 200
 x_input = tf.placeholder(tf.float32, shape=[None, n_features], name='x_input')
 y_input = tf.placeholder(tf.int32, shape=[None], name='y_input')
 
-W = tf.Variable(tf.truncated_normal([n_features, n_classes]), name='W')
-b = tf.Variable(tf.zeros([10]) + 0.1, name='b')
+W1 = tf.Variable(tf.truncated_normal([n_features, 10]), name='W')
+b1 = tf.Variable(tf.zeros([10]) + 0.1, name='b')
 
-logits = tf.sigmoid(tf.matmul(x_input, W) + b)
+logits1 = tf.sigmoid(tf.matmul(x_input, W1) + b1)
 
+W = tf.Variable(tf.truncated_normal([10, n_classes]), name='W')
+b = tf.Variable(tf.zeros([n_classes]), name='b')
+
+logits = tf.sigmoid(tf.matmul(logits1, W) + b)
 
 predict = tf.arg_max(logits, 1, name='predict')
 loss = tf.losses.sparse_softmax_cross_entropy(logits=logits, labels=y_input)
