@@ -105,10 +105,6 @@ def mutate(child):
 
 
 # pop = np.random.randint(2, size=(POP_SIZE, DNA_SIZE))
-# for i in pop:
-#     for j in pop[i]:
-#         if np.random.rand() >= 0.1:
-#             pop[i][j] = 0
 
 # initialize the pop DNA
 pop = np.zeros((POP_SIZE, DNA_SIZE))
