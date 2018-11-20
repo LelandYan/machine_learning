@@ -6,19 +6,29 @@ import numpy as np
 import pandas as pd
 import model
 
+# the path and name of file
 CSV_FILE_PATH = 'csv_result-colonTumor.csv'
+# read the file
 df = pd.read_csv(CSV_FILE_PATH)
 shapes = df.values.shape
+# the eigenvalue of file
 input_data = df.values[:, 1:shapes[1] - 1]
+# the result of file
 result = df.values[:, shapes[1] - 1:shapes[1]]
+# the length of eigenvalue
 value_len = input_data.shape[1]
+# the length of result
 pop_len = result.shape[0]
-
-DNA_SIZE = value_len  # DNA length
-POP_SIZE = pop_len  # population size
-CROSS_RATE = 0.8  # mating probability(DNA crossover)
-MUTATION_RATE = 0.003  # mutation probability
-N_GENERATIONS = 10
+# DNA length
+DNA_SIZE = value_len
+# population size
+POP_SIZE = pop_len
+# mating probability(DNA crossover)
+CROSS_RATE = 0.8
+# mutation probability
+MUTATION_RATE = 0.003
+# the times of generations
+N_GENERATIONS = 100
 
 
 # find non-zero fitness for selection
@@ -85,7 +95,7 @@ def crossover(parent, pop):
         parent[cross_points] = pop[i_, cross_points]
     return parent
 
-
+# genovariation
 def mutate(child):
     for point in range(DNA_SIZE):
         if np.random.rand() < MUTATION_RATE:
@@ -100,6 +110,7 @@ pop = np.zeros((POP_SIZE, DNA_SIZE))
 pop = np.full(pop.shape, 0)
 count = 1
 
+# pick up the 20 points from DNA
 for i in range(len(pop)):
     for j in range(len(pop[i])):
         if count <= 0.005 * DNA_SIZE:
@@ -107,6 +118,7 @@ for i in range(len(pop)):
                 pop[i][j] = 1
                 count += 1
 
+# the training of ga
 for _ in range(N_GENERATIONS):
     accuracy_list = []
     feature_list = []

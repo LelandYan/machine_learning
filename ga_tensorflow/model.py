@@ -16,13 +16,8 @@ class Neural_Network(object):
     def __int__(self, data, result):
         self.n_classes = 2
         self.batch_size = 10
-        # self.df = pd.read_csv('csv_result-ALL-AML_train.csv')
-        # self.shapes = self.df.values.shape
-        # self.data = self.df.values[:, 1:self.shapes[1] - 1]
-        # self.result = self.df.values[:, self.shapes[1] - 1:self.shapes[1]]
         self.data = data
         self.result = result
-        # print(self.data)
         self.train_x, self.test_x, self.train_y, self.test_y = train_test_split(self.data, self.result, test_size=0.3)
         self.n_features = self.train_x.shape[1]
         self.train_y = np.array(self.train_y.flatten())
