@@ -8,7 +8,7 @@ from sklearn.model_selection import train_test_split
 
 
 class Neural_Network(object):
-    def get_batch(self, x, y, batch):
+    def get_batch(self, x, y, batch):# 要用十倍交叉验证
         n_samples = len(x)
         for i in range(batch, n_samples, batch):
             yield x[i - batch:i], y[i - batch:i]
