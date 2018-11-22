@@ -2,17 +2,19 @@ import tensorflow as tf
 import numpy as np
 from sklearn.model_selection import train_test_split
 import pandas as pd
-
+import matplotlib.pyplot as plt
 CSV_FILE_PATH = '02.csv'
 df = pd.read_csv(CSV_FILE_PATH)
 shapes = df.values.shape
 data = df.values[:, 4:shapes[1] - 1]
 result = df.values[:, shapes[1] - 1:shapes[1]]
-print(data)
 train_x, test_x, train_y, test_y = train_test_split(data, result, test_size=0.3)
 n_features = train_x.shape[1]
 train_y = np.array(train_y.flatten())
 test_y = np.array(test_y.flatten())
+
+
+
 
 n_classes = 1
 batch_size = 200
@@ -55,5 +57,6 @@ with tf.Session() as sess:
             # ty = ty[:, np.newaxis].tolist()
             sess.run(train_step, feed_dict={x_input: tx, y_input: ty})
     #print(sess.run(logits,feed_dict={x_input: test_x, y_input: test_y}))
-    acc = sess.run(accuracy, feed_dict={x_input: test_x, y_input: test_y})
+    acc,cost = sess.run([accuracy,cross_entropy], feed_dict={x_input: test_x, y_input: test_y})
     print("Iter " + str(epoch) + ",Testing Accuracy= " + str(acc))
+    print(cost)
