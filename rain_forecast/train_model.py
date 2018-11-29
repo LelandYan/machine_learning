@@ -14,9 +14,10 @@ output_size = 1
 lr = 0.0006  # 学习率
 # ——————————————————导入数据——————————————————————
 f = open('dataset_2.csv')
+# f = open("01.csv")
 df = pd.read_csv(f)  # 读入股票数据
 data = df.iloc[:, 2:10].values  # 取第3-10列
-
+#data = df.iloc[:,4:14].values
 
 # 获取训练集
 def get_train_data(batch_size=60, time_step=20, train_begin=0, train_end=5800):
@@ -145,8 +146,9 @@ def prediction(time_step=20):
         print("The accuracy of this predict:", acc)
         # 以折线图表示结果
         plt.figure()
-        plt.plot(list(range(len(test_predict))), test_predict, color='b', )
-        plt.plot(list(range(len(test_y))), test_y, color='r')
+
+        plt.plot(list(range(len(test_y))), test_y, color='b')
+        plt.plot(list(range(len(test_predict))), test_predict, color='r', )
         plt.show()
 
 

@@ -50,7 +50,7 @@ with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
     sess.run(tf.local_variables_initializer())
     step = 0
-    for epoch in range(20):  # 训练次数
+    for epoch in range(200):  # 训练次数
         for tx, ty in get_batch(train_x, train_y, batch_size):  # 得到一个batch的数据
             step += 1
             loss_value, _, acc_value = sess.run([loss, optimizer, acc_op], feed_dict={x_input: tx, y_input: ty})
