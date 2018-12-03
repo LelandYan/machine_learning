@@ -4,6 +4,9 @@ from sklearn.model_selection import train_test_split
 import pandas as pd
 <<<<<<< Updated upstream
 import matplotlib.pyplot as plt
+
+
+
 CSV_FILE_PATH = '02.csv'
 df = pd.read_csv(CSV_FILE_PATH)
 shapes = df.values.shape
@@ -20,8 +23,6 @@ train_x, test_x, train_y, test_y = train_test_split(data, result, test_size=0.3)
 n_features = train_x.shape[1]
 train_y = np.array(train_y.flatten())
 test_y = np.array(test_y.flatten())
-
-
 
 
 n_classes = 1
@@ -51,15 +52,13 @@ cross_entropy = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits_v2(labels
 # 使用AdamOptimizer进行优化
 train_step = tf.train.AdamOptimizer(1e-4).minimize(cross_entropy)
 # 结果放入一个布尔型列表中
-print(y_input)
-print(logits)
 correct_prediction = tf.equal(tf.argmax(y_input, 0), tf.argmax(logits, 0))
 # 求准确率
 accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 
 with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
-    for epoch in range(50):  # 训练次数
+    for epoch in range(25):  # 训练次数
         for tx, ty in get_batch(train_x, train_y, batch_size):  # 得到一个batch的数据
 
             # tx = tx.tolist()

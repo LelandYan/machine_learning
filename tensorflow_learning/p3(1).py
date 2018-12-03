@@ -19,6 +19,7 @@ def body(x,r):
     r=r*x
     return x,r
 def mma(x,r):
+    print(x,r)
     x,r=tf.while_loop(cond, body, [x, r])
     return r
 #定义伽马函数
@@ -26,6 +27,7 @@ def pearson(j,k,l,x):
     a=[j,k,l]
 #j k l 分别表示α β a0三个参数
     s=a[1]**a[0]
+    #new_a = tf.to_double(a[0])
     s=s/mma(a[0],r)
     y=(x-a[2])**(a[0]-1)
     s=s*y 
