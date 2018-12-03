@@ -2,11 +2,19 @@ import tensorflow as tf
 import numpy as np
 from sklearn.model_selection import train_test_split
 import pandas as pd
+<<<<<<< Updated upstream
 import matplotlib.pyplot as plt
 CSV_FILE_PATH = '02.csv'
 df = pd.read_csv(CSV_FILE_PATH)
 shapes = df.values.shape
 data = df.values[:, 4:shapes[1] - 1]
+=======
+
+CSV_FILE_PATH = '02.csv'
+df = pd.read_csv(CSV_FILE_PATH)
+shapes = df.values.shape
+data = df.values[:, 4:shapes[1] - 3]
+>>>>>>> Stashed changes
 result = df.values[:, shapes[1] - 1:shapes[1]]
 train_x, test_x, train_y, test_y = train_test_split(data, result, test_size=0.3)
 n_features = train_x.shape[1]
@@ -53,6 +61,7 @@ with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
     for epoch in range(50):  # 训练次数
         for tx, ty in get_batch(train_x, train_y, batch_size):  # 得到一个batch的数据
+
             # tx = tx.tolist()
             # ty = ty[:, np.newaxis].tolist()
             sess.run(train_step, feed_dict={x_input: tx, y_input: ty})

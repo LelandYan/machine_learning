@@ -95,6 +95,7 @@ def crossover(parent, pop):
         parent[cross_points] = pop[i_, cross_points]
     return parent
 
+
 # genovariation
 def mutate(child):
     for point in range(DNA_SIZE):
