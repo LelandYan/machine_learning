@@ -1,6 +1,5 @@
 import pandas as pd
 
-
 def arff_to_csv(fpath):
     # 读取arff数据
     if fpath.find('.arff') < 0:
