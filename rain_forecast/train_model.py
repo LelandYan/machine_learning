@@ -11,14 +11,14 @@ rnn_unit = 10  # 隐层神经元的个数
 lstm_layers = 3  # 隐层层数
 input_size = 7
 output_size = 1
-lr = 0.006  # 学习率
+lr = 0.0006  # 学习率
 # ——————————————————导入数据——————————————————————
 f = open('02.csv', encoding='gb18030', errors='ignore')
 # f = open("01.csv")
 df = pd.read_csv(f)  # 读入股票数据
-#data = df.iloc[:, 2:10].values  # 取第3-10列
-data = df.iloc[:,4:14].values
-
+data = df.iloc[:, 2:10].values  # 取第3-10列
+#data = df.iloc[:,4:15].values
+print(data.shape)
 
 
 # 获取训练集
@@ -112,8 +112,9 @@ def train_lstm(batch_size=60, time_step=20, train_begin=2000, train_end=5800):
 
     with tf.Session() as sess:
         sess.run(tf.global_variables_initializer())
-        for i in range(20):  # 这个迭代次数，可以更改，越大预测效果会更好，但需要更长时间
+        for i in range(200):  # 这个迭代次数，可以更改，越大预测效果会更好，但需要更长时间
             for step in range(len(batch_index) - 1):
+                #print(train_y[batch_index[step]:batch_index[step+1]])
                 _, loss_ = sess.run([train_op, loss], feed_dict={X: train_x[batch_index[step]:batch_index[step + 1]],
                                                                  Y: train_y[batch_index[step]:batch_index[step + 1]],
                                                                  keep_prob: 0.5})
