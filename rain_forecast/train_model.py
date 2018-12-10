@@ -1,6 +1,6 @@
 # _*_ coding: utf-8 _*_
 __author__ = 'LelandYan'
-__date__ = '2018/11/17 20:03'
+__date__ = '2018/11/19 20:03'
 
 import pandas as pd
 import numpy as np
@@ -9,16 +9,16 @@ import tensorflow as tf
 
 rnn_unit = 10  # 隐层神经元的个数
 lstm_layers = 3  # 隐层层数
-input_size = 7
+input_size = 9
 output_size = 1
 lr = 0.0006  # 学习率
 # ——————————————————导入数据——————————————————————
 f = open('02.csv', encoding='gb18030', errors='ignore')
 # f = open("01.csv")
 df = pd.read_csv(f)  # 读入股票数据
-data = df.iloc[:, 2:10].values  # 取第3-10列
-#data = df.iloc[:,4:15].values
-print(data.shape)
+#data = df.iloc[:, 2:10].values  # 取第3-10列
+data = df.iloc[:,5:15].values
+print(data)
 
 
 # 获取训练集
@@ -30,8 +30,8 @@ def get_train_data(batch_size=60, time_step=20, train_begin=0, train_end=5800):
     for i in range(len(normalized_train_data) - time_step):
         if i % batch_size == 0:
             batch_index.append(i)
-        x = normalized_train_data[i:i + time_step, :7]
-        y = normalized_train_data[i:i + time_step, 7, np.newaxis]
+        x = normalized_train_data[i:i + time_step, :9]
+        y = normalized_train_data[i:i + time_step, 9, np.newaxis]
         train_x.append(x.tolist())
         train_y.append(y.tolist())
     batch_index.append((len(normalized_train_data) - time_step))
@@ -47,12 +47,13 @@ def get_test_data(time_step=20, test_begin=5800):
     size = (len(normalized_test_data) + time_step - 1) // time_step  # 有size个sample
     test_x, test_y = [], []
     for i in range(size - 1):
-        x = normalized_test_data[i * time_step:(i + 1) * time_step, :7]
-        y = normalized_test_data[i * time_step:(i + 1) * time_step, 7]
+        x = normalized_test_data[i * time_step:(i + 1) * time_step, :9]
+        y = normalized_test_data[i * time_step:(i + 1) * time_step, 9]
         test_x.append(x.tolist())
         test_y.extend(y)
-    test_x.append((normalized_test_data[(i + 1) * time_step:, :7]).tolist())
-    test_y.extend((normalized_test_data[(i + 1) * time_step:, 7]).tolist())
+    i = size-2
+    test_x.append((normalized_test_data[(i + 1) * time_step:, :9]).tolist())
+    test_y.extend((normalized_test_data[(i + 1) * time_step:, 9]).tolist())
     return mean, std, test_x, test_y
 
 
@@ -112,14 +113,14 @@ def train_lstm(batch_size=60, time_step=20, train_begin=2000, train_end=5800):
 
     with tf.Session() as sess:
         sess.run(tf.global_variables_initializer())
-        for i in range(200):  # 这个迭代次数，可以更改，越大预测效果会更好，但需要更长时间
+        for i in range(20):  # 这个迭代次数，可以更改，越大预测效果会更好，但需要更长时间
             for step in range(len(batch_index) - 1):
                 #print(train_y[batch_index[step]:batch_index[step+1]])
                 _, loss_ = sess.run([train_op, loss], feed_dict={X: train_x[batch_index[step]:batch_index[step + 1]],
                                                                  Y: train_y[batch_index[step]:batch_index[step + 1]],
                                                                  keep_prob: 0.5})
-            print("Number of iterations:", i, " accuracy:", 1-loss_)
-        # print("model_save: ", saver.save(sess, 'model_save2\\modle.ckpt'))
+            print("Number of iterations:", i, " loss:", loss_)
+        print("model_save: ", saver.save(sess, 'model_save2\\modle.ckpt'))
         # # I run the code on windows 10,so use  'model_save2\\modle.ckpt'
         # # if you run it on Linux,please use  'model_save2/modle.ckpt'
         print("The train has finished")
@@ -129,31 +130,31 @@ train_lstm()
 
 
 # ————————————————预测模型————————————————————
-# def prediction(time_step=20):
-#     X = tf.placeholder(tf.float32, shape=[None, time_step, input_size])
-#     mean, std, test_x, test_y = get_test_data(time_step)
-#     with tf.variable_scope("sec_lstm", reuse=tf.AUTO_REUSE):
-#         pred, _ = lstm(X)
-#     saver = tf.train.Saver(tf.global_variables())
-#     with tf.Session() as sess:
-#         # 参数恢复
-#         module_file = tf.train.latest_checkpoint('model_save2')
-#         saver.restore(sess, module_file)
-#         test_predict = []
-#         for step in range(len(test_x) - 1):
-#             prob = sess.run(pred, feed_dict={X: [test_x[step]], keep_prob: 1})
-#             predict = prob.reshape((-1))
-#             test_predict.extend(predict)
-#         test_y = np.array(test_y) * std[7] + mean[7]
-#         test_predict = np.array(test_predict) * std[7] + mean[7]
-#         acc = np.average(np.abs(test_predict - test_y[:len(test_predict)]) / test_y[:len(test_predict)])  # 偏差程度
-#         print("The accuracy of this predict:", acc)
-#         # 以折线图表示结果
-#         plt.figure()
-#
-#         plt.plot(list(range(len(test_y))), test_y, color='b')
-#         plt.plot(list(range(len(test_predict))), test_predict, color='r', )
-#         plt.show()
-#
-#
-# prediction()
+def prediction(time_step=20):
+    X = tf.placeholder(tf.float32, shape=[None, time_step, input_size])
+    mean, std, test_x, test_y = get_test_data(time_step)
+    with tf.variable_scope("sec_lstm", reuse=tf.AUTO_REUSE):
+        pred, _ = lstm(X)
+    saver = tf.train.Saver(tf.global_variables())
+    with tf.Session() as sess:
+        # 参数恢复
+        module_file = tf.train.latest_checkpoint('model_save2')
+        saver.restore(sess, module_file)
+        test_predict = []
+        for step in range(len(test_x) - 1):
+            prob = sess.run(pred, feed_dict={X: [test_x[step]], keep_prob: 1})
+            predict = prob.reshape((-1))
+            test_predict.extend(predict)
+        test_y = np.array(test_y) * std[9] + mean[9]
+        test_predict = np.array(test_predict) * std[9] + mean[9]
+        acc = np.average(np.abs(test_predict - test_y[:len(test_predict)]) / test_y[:len(test_predict)])  # 偏差程度
+        print("The accuracy of this predict:", acc)
+        # 以折线图表示结果
+        plt.figure()
+
+        plt.plot(list(range(len(test_y))), test_y, color='b')
+        plt.plot(list(range(len(test_predict))), test_predict, color='r', )
+        plt.show()
+
+
+prediction()

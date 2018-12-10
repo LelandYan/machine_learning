@@ -10,9 +10,11 @@ output_size = 1
 lr = 0.0006  # 学习率
 # ——————————————————导入数据——————————————————————
 f = open('dataset_2.csv')
+#f = open('02.csv', encoding='gb18030', errors='ignore')
 df = pd.read_csv(f)  # 读入股票数据
 data = df.iloc[:, 2:10].values  # 取第3-10列
-
+#data = df.iloc[:,4:15].values
+print(data)
 
 # 获取训练集
 def get_train_data(batch_size=60, time_step=20, train_begin=0, train_end=5800):
@@ -44,6 +46,8 @@ def get_test_data(time_step=20, test_begin=5800):
         y = normalized_test_data[i * time_step:(i + 1) * time_step, 7]
         test_x.append(x.tolist())
         test_y.extend(y)
+    print(i)
+    print(size-1)
     test_x.append((normalized_test_data[(i + 1) * time_step:, :7]).tolist())
     test_y.extend((normalized_test_data[(i + 1) * time_step:, 7]).tolist())
     return mean, std, test_x, test_y
