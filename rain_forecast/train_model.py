@@ -21,7 +21,7 @@ data = df.iloc[:, 5:15].values
 
 
 # 获取训练集
-def get_train_data(batch_size=60, time_step=20, train_begin=0, train_end=3000):
+def get_train_data(batch_size=60, time_step=20, train_begin=0, train_end=2000):
     batch_index = []
     data_train = data[train_begin:train_end]
     normalized_train_data = (data_train - np.mean(data_train, axis=0)) / np.std(data_train, axis=0)  # 标准化
@@ -38,19 +38,18 @@ def get_train_data(batch_size=60, time_step=20, train_begin=0, train_end=3000):
 
 
 # 获取测试集
-def get_test_data(time_step=20, test_begin=3000):
+def get_test_data(time_step=20, test_begin=2000):
     data_test = data[test_begin:]
-    print(data_test.shape)
     mean = np.mean(data_test, axis=0)
     std = np.std(data_test, axis=0)
-    normalized_test_data = (data_test - mean) / std  # 标准化
+    # normalized_test_data = (data_test - mean) / std  # 标准化
+    normalized_test_data = data_test
     size = (len(normalized_test_data) + time_step - 1) // time_step  # 有size个sample
     test_x, test_y = [], []
     for i in range(size - 1):
-        #print(normalized_test_data.shape)
+        # print(normalized_test_data.shape)
         x = normalized_test_data[i * time_step:(i + 1) * time_step, :9]
         y = normalized_test_data[i * time_step:(i + 1) * time_step, 9]
-        print(normalized_test_data.shape)
         test_x.append(x.tolist())
         test_y.extend(y)
     i = size - 2
@@ -115,7 +114,7 @@ def train_lstm(batch_size=60, time_step=20, train_begin=0, train_end=3000):
 
     with tf.Session() as sess:
         sess.run(tf.global_variables_initializer())
-        for i in range(30):  # 这个迭代次数，可以更改，越大预测效果会更好，但需要更长时间
+        for i in range(100):  # 这个迭代次数，可以更改，越大预测效果会更好，但需要更长时间
             for step in range(len(batch_index) - 1):
                 _, loss_ = sess.run([train_op, loss], feed_dict={X: train_x[batch_index[step]:batch_index[step + 1]],
                                                                  Y: train_y[batch_index[step]:batch_index[step + 1]],
@@ -125,7 +124,7 @@ def train_lstm(batch_size=60, time_step=20, train_begin=0, train_end=3000):
         print("The train has finished")
 
 
-# train_lstm()
+train_lstm()
 
 
 # ————————————————预测模型————————————————————
@@ -144,12 +143,14 @@ def prediction(time_step=20):
             prob = sess.run(pred, feed_dict={X: [test_x[step]], keep_prob: 1})
             predict = prob.reshape((-1))
             test_predict.extend(predict)
-        # test_y = np.array(test_y) * std[9] + mean[9]
-        test_y = np.array(test_y)
-        # test_predict = np.array(test_predict) * std[9] + mean[9]
-        test_predict = np.array(test_y)
-        print(test_predict)
-        acc = np.average(np.abs(test_predict - test_y[:len(test_predict)]) / test_y[:len(test_predict)])  # 偏差程度
+        test_y = np.array(test_y) * std[9] + mean[9]
+        # test_y = np.array(test_y)
+        test_predict = np.array(test_predict) * std[9] + mean[9]
+        # test_predict = np.array(test_y)
+        # print(test_y[:len(test_predict)])
+        # acc = np.average(np.abs(test_predict - test_y[:len(test_predict)]) / test_y[:len(test_predict)])  # 偏差程度
+        acc = np.average(np.abs(test_predict - test_y[:len(test_predict)]))
+        # acc, acc_op = tf.metrics.accuracy(labels=test_y[:len(test_predict)], predictions=test_predict)
         print("The accuracy of this predict:", acc)
         # 以折线图表示结果
         plt.figure()
@@ -157,5 +158,6 @@ def prediction(time_step=20):
         plt.plot(list(range(len(test_y))), test_y, color='b')
         plt.plot(list(range(len(test_predict))), test_predict, color='r', )
         plt.show()
+
 
 prediction()
