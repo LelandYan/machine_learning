@@ -119,7 +119,7 @@ def train_lstm(batch_size=60, time_step=20, train_begin=0, train_end=3000):
                 _, loss_ = sess.run([train_op, loss], feed_dict={X: train_x[batch_index[step]:batch_index[step + 1]],
                                                                  Y: train_y[batch_index[step]:batch_index[step + 1]],
                                                                  keep_prob: 0.5})
-            print("Number of iterations:", i, " loss:", 1 - loss_)
+            print("Number of iterations:", i, " loss:",loss_)
         print("model_save: ", saver.save(sess, 'model_save2\\modle.ckpt'))
         print("The train has finished")
 
@@ -147,17 +147,17 @@ def prediction(time_step=20):
         # test_y = np.array(test_y)
         test_predict = np.array(test_predict) * std[9] + mean[9]
         # test_predict = np.array(test_y)
-        # print(test_y[:len(test_predict)])
+        print(test_y[:len(test_predict)])
         # acc = np.average(np.abs(test_predict - test_y[:len(test_predict)]) / test_y[:len(test_predict)])  # 偏差程度
-        acc = np.average(np.abs(test_predict - test_y[:len(test_predict)]))
+        loss = np.average(np.abs(test_predict - test_y[:len(test_predict)])/test_y[:len(test_predict)])
         # acc, acc_op = tf.metrics.accuracy(labels=test_y[:len(test_predict)], predictions=test_predict)
-        print("The accuracy of this predict:", acc)
+        print("The loss of this predict:", loss)
         # 以折线图表示结果
-        plt.figure()
-
-        plt.plot(list(range(len(test_y))), test_y, color='b')
-        plt.plot(list(range(len(test_predict))), test_predict, color='r', )
-        plt.show()
+        # plt.figure()
+        #
+        # plt.plot(list(range(len(test_y))), test_y, color='b')
+        # plt.plot(list(range(len(test_predict))), test_predict, color='r', )
+        # plt.show()
 
 
 prediction()
