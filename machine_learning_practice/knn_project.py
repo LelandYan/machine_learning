@@ -5,7 +5,7 @@ __date__ = '2018/12/27 18:36'
 import numpy as np
 import matplotlib.pyplot as plt
 import operator
-
+import os
 
 def classify0(intX, dataSet, labels, k):
     '''
@@ -91,6 +91,46 @@ def datingClassesTest():
     print("the total error rate is: %f" % (errorCount / float(numTestVecs)))
     print(errorCount)
 
+def img2vector(filename):
+    '''
+    :param filename:
+    :return:
+    '''
+    returnVect = np.zeros((1,1024))
+    fr = open(filename)
+    for i in range(32):
+        lineStr = fr.readline()
+        for j in range(32):
+            returnVect[0,32*i+j] = int(lineStr[j])
+    return returnVect
+
+
+def handwritingClassTest():
+    hwLabels = []
+    trainingFileList = os.listdir("trainingDigits")
+    m = len(trainingFileList)
+    trainingMat = np.zeros((m,1024))
+    for i in range(m):
+        fileNameStr = trainingFileList[i]
+        fileStr = fileNameStr.split('.')[0]
+        classNumStr = int(fileStr.split('_')[0])
+        hwLabels.append(classNumStr)
+        trainingMat[i,:] = img2vector(f"trainingDigits/{fileNameStr}")
+
+    testFileList = os.listdir("testDigits")
+    errorCount = 0.0
+    mTest = len(testFileList)
+    for i in range(mTest):
+        fileNameStr = testFileList[i]
+        fileStr = fileNameStr.split('.')[0]
+        classNumStr = int(fileStr.split('_')[0])
+        vectorUnderTest = img2vector(f"testDigits/{fileNameStr}")
+        classifierResult = classify0(vectorUnderTest,trainingMat,hwLabels,3)
+        print(f"the classifier came back with: {classifierResult},the real answer is:{classNumStr}")
+        if (classifierResult != classNumStr):errorCount += 1.0
+    print(f"\nthe total number of errors is : {errorCount}")
+    print(f"\nthe total error rate is {errorCount / float(mTest)}")
 
 if __name__ == '__main__':
-    datingClassesTest()
+    # datingClassesTest()
+    handwritingClassTest()
