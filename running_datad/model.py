@@ -3,6 +3,7 @@ __author__ = 'LelandYan'
 __date__ = '2018/11/17 21:38'
 
 import tensorflow as tf
+from sklearn import cross_validation
 import numpy as np
 from sklearn.model_selection import train_test_split
 
@@ -18,7 +19,8 @@ class Neural_Network(object):
         self.batch_size = 10
         self.data = data
         self.result = result
-        self.train_x, self.test_x, self.train_y, self.test_y = train_test_split(self.data, self.result, test_size=0.3)
+        #self.train_x, self.test_x, self.train_y, self.test_y = train_test_split(self.data, self.result, test_size=0.3)
+        self.train_x, self.test_x, self.train_y, self.test_y = cross_validation.train_test_split(self.data, self.result, test_size=0.3)
         self.n_features = self.train_x.shape[1]
         self.train_y = np.array(self.train_y.flatten())
         self.test_y = np.array(self.test_y.flatten())
@@ -35,6 +37,7 @@ class Neural_Network(object):
         b = tf.Variable(tf.zeros([self.n_classes]), name='b2')
 
         logits = tf.nn.softmax(tf.matmul(logits1, W) + b)  # 优化一
+
         predict = tf.arg_max(logits, 1, name='predict')
         loss = tf.losses.sparse_softmax_cross_entropy(logits=logits, labels=self.y_input)
         self.loss = tf.reduce_mean(loss)
@@ -44,7 +47,7 @@ class Neural_Network(object):
             sess.run(tf.global_variables_initializer())
             sess.run(tf.local_variables_initializer())
             step = 0
-            for epoch in range(200):  # 训练次数
+            for epoch in range(50):  # 训练次数
                 for self.tx, self.ty in self.get_batch(self.train_x, self.train_y, self.batch_size):  # 得到一个batch的数据
                     step += 1
                     loss_value, _, acc_value = sess.run([self.loss, self.optimizer, self.acc_op],

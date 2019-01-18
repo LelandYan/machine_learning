@@ -7,7 +7,7 @@ import pandas as pd
 import model
 
 # the path and name of file
-CSV_FILE_PATH = 'csv_result-colonTumor.csv'
+CSV_FILE_PATH = 'parkinsons.csv'
 # read the file
 df = pd.read_csv(CSV_FILE_PATH)
 shapes = df.values.shape
@@ -18,7 +18,8 @@ result = df.values[:, shapes[1] - 1:shapes[1]]
 # the length of eigenvalue
 value_len = input_data.shape[1]
 # the length of result
-pop_len = result.shape[0]
+pop_len = 20
+# pop_len = result.shape[0]
 # DNA length
 DNA_SIZE = value_len
 # population size
@@ -104,7 +105,7 @@ def mutate(child):
     return child
 
 
-# pop = np.random.randint(2, size=(POP_SIZE, DNA_SIZE))
+
 
 # initialize the pop DNA
 pop = np.zeros((POP_SIZE, DNA_SIZE))
@@ -114,16 +115,16 @@ count = 1
 # pick up the 20 points from DNA
 for i in range(len(pop)):
     for j in range(len(pop[i])):
-        if count <= 0.005 * DNA_SIZE:
-            if np.random.rand() < 0.8:
+        if count <= 1000:
+            if np.random.rand() < 0.5:
                 pop[i][j] = 1
                 count += 1
-
+print(pop)
 # the training of ga
 for _ in range(N_GENERATIONS):
     accuracy_list = []
     feature_list = []
-    for i in range(input_data.shape[0]):
+    for i in range(POP_SIZE):
         data = input_data[:, translateDNA(pop[i])]
         # data = data[:, pop[i]]
         feature_list.append(np.sum(pop, axis=1)[0])
