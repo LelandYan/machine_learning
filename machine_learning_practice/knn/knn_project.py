@@ -132,5 +132,5 @@ def handwritingClassTest():
     print(f"\nthe total error rate is {errorCount / float(mTest)}")
 
 if __name__ == '__main__':
-    # datingClassesTest()
+    datingClassesTest()
     handwritingClassTest()

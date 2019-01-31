@@ -18,7 +18,7 @@ result = df.values[:, shapes[1] - 1:shapes[1]]
 # the length of eigenvalue
 value_len = input_data.shape[1]
 # the length of result
-pop_len = 20
+pop_len = 10
 # pop_len = result.shape[0]
 # DNA length
 DNA_SIZE = value_len
@@ -29,7 +29,7 @@ CROSS_RATE = 0.8
 # mutation probability
 MUTATION_RATE = 0.003
 # the times of generations
-N_GENERATIONS = 100
+N_GENERATIONS = 50
 
 
 # find non-zero fitness for selection
