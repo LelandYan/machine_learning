@@ -66,6 +66,23 @@ def autoNorm(dataSet):
     return normDataSet, ranges, minVals
 
 
+def datingClassTest():
+    hoRatio = 0.1
+    datingDataMat, datingLabels = file2matrix('datingTestSet2.txt')
+    figure(datingDataMat,datingLabels)
+    normMat, ranges, minVals = autoNorm(datingDataMat)
+    m = normMat.shape[0]
+    numTestVecs = int(m * hoRatio)
+
+    errorCount = 0.0
+    for i in range(numTestVecs):
+        classifierResult = classify0(normMat[i, :], normMat[numTestVecs:m, :], datingLabels[numTestVecs:m], 3)
+        print(f"the classifier came back with {classifierResult},the real answer is {datingLabels[i]}")
+        if (classifierResult != datingLabels[i]): errorCount += 1.0
+    print(f"the total error rate is {errorCount / float(numTestVecs)}")
+    print("numTestVecs=", numTestVecs," errorCount=",errorCount)
+
+
 def figure(dataingDataMat, datingLabels):
     fig = plt.figure(figsize=(10, 10))
     plt.title("Example:improving matching from a dating site with KNN")
@@ -81,3 +98,8 @@ def figure(dataingDataMat, datingLabels):
     ax3.scatter(x=dataingDataMat[:, 0], y=dataingDataMat[:, 2], s=15.0 * np.array(datingLabels),
                 c=np.array(datingLabels))
     plt.show()
+
+
+if __name__ == '__main__':
+    datingClassTest()
+
