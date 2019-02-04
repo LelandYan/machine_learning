@@ -5,7 +5,7 @@ __date__ = '2018/12/3 22:49'
 import numpy as np
 import operator
 import collections
-import matplotlib
+import os
 import matplotlib.pyplot as plt
 
 
@@ -69,7 +69,7 @@ def autoNorm(dataSet):
 def datingClassTest():
     hoRatio = 0.1
     datingDataMat, datingLabels = file2matrix('datingTestSet2.txt')
-    figure(datingDataMat,datingLabels)
+    figure(datingDataMat, datingLabels)
     normMat, ranges, minVals = autoNorm(datingDataMat)
     m = normMat.shape[0]
     numTestVecs = int(m * hoRatio)
@@ -80,7 +80,7 @@ def datingClassTest():
         print(f"the classifier came back with {classifierResult},the real answer is {datingLabels[i]}")
         if (classifierResult != datingLabels[i]): errorCount += 1.0
     print(f"the total error rate is {errorCount / float(numTestVecs)}")
-    print("numTestVecs=", numTestVecs," errorCount=",errorCount)
+    print("numTestVecs=", numTestVecs, " errorCount=", errorCount)
 
 
 def figure(dataingDataMat, datingLabels):
@@ -100,6 +100,23 @@ def figure(dataingDataMat, datingLabels):
     plt.show()
 
 
-if __name__ == '__main__':
-    datingClassTest()
+def img2vector(filename):
+    returnVect = np.zeros((1, 1024))
+    with open(filename) as f:
+        for i in range(32):
+            lineStr = f.readline()
+            for j in range(32):
+                returnVect[0, 32 * i + j] = int(lineStr[j])
+        return returnVect
 
+
+def handwritingClassTest():
+    hwLabels = []
+    trainingFileList = os.listdir("trainingDigits")
+    print(trainingFileList)
+
+
+if __name__ == '__main__':
+    # test1()
+    # datingClassTest()
+    handwritingClassTest()
