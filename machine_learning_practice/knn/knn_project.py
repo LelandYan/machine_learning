@@ -6,7 +6,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import operator
 import os
-
+from sklearn.neighbors import KNeighborsClassifier
 def classify0(intX, dataSet, labels, k):
     '''
     :param intX:用于分类的输入向量
