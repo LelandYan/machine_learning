@@ -76,3 +76,4 @@ def main():
 if __name__ == '__main__':
     finalData,reconMat = main()
     plotBestFit(finalData,reconMat)
+    from sklearn.model_selection import cross_val_score
