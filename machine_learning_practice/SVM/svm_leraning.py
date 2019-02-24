@@ -25,3 +25,6 @@ if __name__ == '__main__':
     # plt.scatter(X[y==0,0],X[y==0,1])
     # plt.scatter(X[y==1,0],X[y==1,1])
     # plt.show()
+    from sklearn.ensemble import GradientBoostingClassifier
+    gb_clf = GradientBoostingClassifier(max_depth=2,n_estimators=20)
+    
