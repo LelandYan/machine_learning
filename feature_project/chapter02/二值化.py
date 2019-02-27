@@ -68,19 +68,51 @@ from sklearn.model_selection import cross_val_score
 biz_df['log_review_count'] = np.log10(biz_df['review_count'] + 1)
 m_orig = linear_model.LinearRegression()
 scores_orig = cross_val_score(m_orig,biz_df[['review_count']],biz_df['stars'],cv=10)
-print(scores_orig)
+# print(scores_orig)
 m_log = linear_model.LinearRegression()
 scores_log = cross_val_score(m_orig,biz_df[['log_review_count']],biz_df['stars'],cv=10)
-print(scores_log)
+# print(scores_log)
 
-fig, (ax1, ax2) = plt.subplots(2,1)
-ax1.scatter(biz_df['review_count'], biz_df['stars'])
+# fig, (ax1, ax2) = plt.subplots(2,1)
+# ax1.scatter(biz_df['review_count'], biz_df['stars'])
+# ax1.tick_params(labelsize=14)
+# ax1.set_xlabel('Review Count', fontsize=14)
+# ax1.set_ylabel('Average Star Rating', fontsize=14)
+#
+# ax2.scatter(biz_df['log_review_count'], biz_df['stars'])
+# ax2.tick_params(labelsize=14)
+# ax2.set_xlabel('Log of Review Count', fontsize=14)
+# ax2.set_ylabel('Average Star Rating', fontsize=14)
+# plt.show()
+
+from scipy import stats
+
+rc_log = stats.boxcox(biz_df['review_count'], lmbda=0)
+rc_bc, bc_params = stats.boxcox(biz_df['review_count'])
+
+
+fig, (ax1, ax2, ax3) = plt.subplots(3,1)
+# original review count histogram
+biz_df['review_count'].hist(ax=ax1, bins=100)
+ax1.set_yscale('log')
 ax1.tick_params(labelsize=14)
-ax1.set_xlabel('Review Count', fontsize=14)
-ax1.set_ylabel('Average Star Rating', fontsize=14)
-
-ax2.scatter(biz_df['log_review_count'], biz_df['stars'])
+ax1.set_title('Review Counts Histogram', fontsize=14)
+ax1.set_xlabel('')
+ax1.set_ylabel('Occurrence', fontsize=14)
+#
+# review count after log transform
+pd.Series(rc_log).hist(ax=ax2, bins=100)
+ax2.set_yscale('log')
 ax2.tick_params(labelsize=14)
-ax2.set_xlabel('Log of Review Count', fontsize=14)
-ax2.set_ylabel('Average Star Rating', fontsize=14)
+ax2.set_title('Log Transformed Counts Histogram', fontsize=14)
+ax2.set_xlabel('')
+ax2.set_ylabel('Occurrence', fontsize=14)
+
+# review count after optimal Box-Cox transform
+pd.Series(rc_bc).hist(ax=ax3, bins=100)
+ax3.set_yscale('log')
+ax3.tick_params(labelsize=14)
+ax3.set_title('Box-Cox Transformed Counts Histogram', fontsize=14)
+ax3.set_xlabel('')
+ax3.set_ylabel('Occurrence', fontsize=14)
 plt.show()
