@@ -102,13 +102,13 @@ if __name__ == '__main__':
     for set in (strat_train_set, strat_test_set):
         set.drop(["income_cat"], axis=1, inplace=True)
 
-
     # 数据的探索和可视化，发展规律
     # 创建一个副本，以免损伤训练集
     housing = strat_train_set.copy()
-    housing.plot(kind="scatter",x="longitude",y="latitude",alpha=0.1)
-    housing.plot(kind="scatter",x="longitude",y="latitude",alpha=0.4,s=housing["population"]/100,label="population",
-                 c="median_house_value",cmap=plt.get_cmap("jet"),colorbar=True)
+    housing.plot(kind="scatter", x="longitude", y="latitude", alpha=0.1)
+    housing.plot(kind="scatter", x="longitude", y="latitude", alpha=0.4, s=housing["population"] / 100,
+                 label="population",
+                 c="median_house_value", cmap=plt.get_cmap("jet"), colorbar=True)
     # plt.legend()
     # plt.show()
 
@@ -116,12 +116,41 @@ if __name__ == '__main__':
     # corr_matrix = housing.corr()
     # print(corr_matrix["median_house_value"].sort_values(ascending=False))
     from pandas.tools.plotting import scatter_matrix
-    attributes =  ["median_house_value", "median_income", "total_rooms","housing_median_age"]
-    scatter_matrix(housing[attributes],figsize=(12,8))
-    housing.plot(kind="scatter",x="median_income",y="median_house_value",alpha=0.1)
+
+    attributes = ["median_house_value", "median_income", "total_rooms", "housing_median_age"]
+    scatter_matrix(housing[attributes], figsize=(12, 8))
+    housing.plot(kind="scatter", x="median_income", y="median_house_value", alpha=0.1)
 
     housing["rooms_per_household"] = housing["total_rooms"] / housing["households"]
     housing["bedrooms_per_room"] = housing["total_bedrooms"] / housing["total_rooms"]
     housing["population_per_household"] = housing["population"] / housing["households"]
     corr_matrix = housing.corr()
-    print(corr_matrix["median_house_value"].sort_values(ascending=True))
+    # print(corr_matrix["median_house_value"].sort_values(ascending=True))
+
+    # 创建干净的数据集
+    housing = strat_train_set.drop("median_house_value", axis=1)
+    housing_labels = strat_train_set["median_house_value"].copy()
+
+
+    # 处理缺失值的方法
+    from sklearn.preprocessing import Imputer
+    imputer = Imputer(strategy="median")
+
+    # 注意这个数据不能存在非数值的数据，创建一个不包含文本属性的数据副本
+    housing_num = housing.drop("ocean_proximity",axis=1)
+    imputer.fit(housing_num)
+    # 返回的实例变量statistics_列出了每个属性的中位数
+    print(imputer.statistics_==housing_num.median().values)
+
+    # 将缺失值转化为中位数，返回的是一个numpy的数组
+    X = imputer.transform(housing_num)
+
+    # 将其转为Pandas的DataFrame中
+    housing_tr = pd.DataFrame(X,columns=housing_num.columns)
+
+    # 处理文本和类别属性
+    from sklearn.preprocessing import LabelEncoder
+    encoder = LabelEncoder()
+    housing_cat = housing["ocean_proximity"]
+    housing_cat_encoded = encoder.fit_transform(housing_cat)
+    print(housing_cat_encoded)
