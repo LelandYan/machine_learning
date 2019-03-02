@@ -86,8 +86,9 @@ if __name__ == '__main__':
     housing['income_cat'] = np.ceil(housing["median_income"] / 1.5)
     # inplace = True 不创建新的对象，直接对原始的对象进行修改
     # inplace = False 对数据进行修改，创建并返回新的对象承载其修改结果
+    print(housing['income_cat'])
     housing['income_cat'].where(housing["income_cat"] < 5, 5.0, inplace=True)
-
+    print(housing['income_cat'])
     # 根据收入分类，进行分类采样，可以使用StratifiedShuffleSplit
     from sklearn.model_selection import StratifiedShuffleSplit
 
@@ -150,7 +151,24 @@ if __name__ == '__main__':
 
     # 处理文本和类别属性
     from sklearn.preprocessing import LabelEncoder
-    encoder = LabelEncoder()
+    # encoder = LabelEncoder()
     housing_cat = housing["ocean_proximity"]
-    housing_cat_encoded = encoder.fit_transform(housing_cat)
-    print(housing_cat_encoded)
+    # housing_cat_encoded = encoder.fit_transform(housing_cat)
+    # print(housing_cat_encoded)
+
+    # 具有多个文本特征列的时候
+    housing_cat_encoded,housing_categories = housing_cat.factorize()
+
+
+    # 独热编码 One-Hot-Encoding
+    from sklearn.preprocessing import OneHotEncoder
+    # encoder = OneHotEncoder()
+    # housing_cat_1hot = encoder.fit_transform(housing_cat_encoded.reshape(-1,1))
+    # print(housing_cat_1hot.toarray())
+
+    from sklearn.preprocessing import LabelBinarizer
+    # 向构造器LabelBinarizer中传入sparse_output=True 就可以得到一个稀疏矩阵
+    encoder = LabelBinarizer()
+    housing_cat_1hot = encoder.fit_transform(housing_cat)
+    # print(housing_cat_1hot)
+
