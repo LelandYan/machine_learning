@@ -39,3 +39,4 @@ print(reg.score(X_test, y_test))
 #     print(key," : ",reg.get_params()[key])
 # 显示交叉验证的过程
 print(pd.DataFrame(grid.cv_results_).T)
+
