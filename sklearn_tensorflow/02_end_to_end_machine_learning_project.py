@@ -151,14 +151,15 @@ if __name__ == '__main__':
 
     # 处理文本和类别属性
     from sklearn.preprocessing import LabelEncoder
-    # encoder = LabelEncoder()
+    encoder = LabelEncoder()
     housing_cat = housing["ocean_proximity"]
-    # housing_cat_encoded = encoder.fit_transform(housing_cat)
-    # print(housing_cat_encoded)
+    housing_cat_encoded = encoder.fit_transform(housing_cat)
+    print(housing_cat_encoded[:10])
 
     # 具有多个文本特征列的时候
     housing_cat_encoded,housing_categories = housing_cat.factorize()
-
+    print(housing_cat_encoded[:10])
+    print(housing_categories)
 
     # 独热编码 One-Hot-Encoding
     from sklearn.preprocessing import OneHotEncoder
