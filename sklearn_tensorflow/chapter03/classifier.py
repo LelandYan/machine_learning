@@ -81,3 +81,16 @@ y_train_pred = cross_val_predict(sgd_clf,X_train,y_train_5,cv=3)
 # 混淆矩阵
 from sklearn.metrics import confusion_matrix
 confusion_matrix(y_train_5,y_train_pred)
+
+# recall precision
+from sklearn.metrics import precision_score,recall_score
+precision_score(y_train_5,y_train_pred)
+recall_score(y_train_5,y_train_pred)
+
+# F1
+"""
+通常结合准确率和召回率会更加方便，这个指标叫做“F1 值”，特别是当你需要一个简单的方法去比较两个分类器的优劣的时候。
+F1 值是准确率和召回率的调和平均。普通的平均值平等地看待所有的值，而调和平均会给小的值更大的权重。
+所以，要想分类器得到一个高的 F1 值，需要召回率和准确率同时高。"""
+from sklearn.metrics import f1_score
+f1_score(y_train_5,y_train_pred)
