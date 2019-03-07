@@ -56,10 +56,17 @@ def foo(x,*args):
     print(args)
 
 if __name__ == '__main__':
-    matrix1 = np.array([[1,0,3,0],
-             [0,0,0,1]])
-    matrix1 = sparse.lil_matrix(matrix1)
-    print(matrix1.rows[0])
+    # b = np.random.randint(0,20,size=(10,2))
+    # print(b)
+    np.random.seed(1)
+    while True:
+        np.random.seed(1)
+        a =  np.random.randint(10)
+        print(a)
+    # matrix1 = np.array([[1,0,3,0],
+    #          [0,0,0,1]])
+    # matrix1 = sparse.lil_matrix(matrix1)
+    # print(np.asarray(matrix1.nonzero()).T)
     # print(foo(1,2,3,4,5))
     # row = np.array([0, 0, 1, 2, 2, 2])
     # col = np.array([0, 2, 2, 0, 1, 2])

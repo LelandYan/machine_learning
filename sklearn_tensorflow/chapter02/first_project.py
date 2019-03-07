@@ -147,3 +147,17 @@ final_prediction = final_model.predict(X_test_prepared)
 final_mse = mean_squared_error(y_test,final_prediction)
 final_rmse = np.sqrt(final_mse)
 print(final_rmse)
+
+
+from sklearn.model_selection import RandomizedSearchCV
+from scipy.stats import randint
+
+param_distribs = {
+        'n_estimators': randint(low=1, high=200),
+        'max_features': randint(low=1, high=8),
+    }
+
+forest_reg = RandomForestRegressor(random_state=42)
+rnd_search = RandomizedSearchCV(forest_reg, param_distributions=param_distribs,
+                                n_iter=10, cv=5, scoring='neg_mean_squared_error', random_state=42)
+rnd_search.fit(housing_prepared, housing_labels)
