@@ -141,7 +141,7 @@ def plot_roc_curve(fpr,tpr,label=None):
 # auc面积 一个比较分类器之间优劣的方法是：测量ROC曲线下的面积（AUC）。一个完美的分类器的 ROC AUC 等于 1，
 # 而一个纯随机分类器的 ROC AUC 等于 0.5。Scikit-Learn 提供了一个函数来计算 ROC AUC：
 from sklearn.metrics import roc_auc_score
-print(roc_auc_score(y_train_5,y_score[:,1]))
+# print(roc_auc_score(y_train_5,y_score[:,1]))
 
 """因为 ROC 曲线跟准确率/召回率曲线（或者叫 PR）很类似，你或许会好奇如何决定使用哪一个曲线呢？一个笨拙的规则是，
 优先使用 PR 曲线当正例很少，或者当你关注假正例多于假反例的时候。其他情况使用 ROC 曲线。
@@ -161,5 +161,40 @@ fpr_forest,tpr_forest,thresholds_forest = roc_curve(y_train_5,y_scores_forest)
 # plt.show()
 
 # 多分类问题
-sgd_clf.fit(X_train,y_train)
-print(sgd_clf.predict([some_digit]))
+# sgd_clf.fit(X_train,y_train)
+# print(sgd_clf.predict([some_digit]))
+# some_digit_scores = sgd_clf.decision_function([some_digit])
+# print(some_digit_scores)
+# print(np.argmax(some_digit_scores))
+# print(sgd_clf.classes_)
+# print(sgd_clf.classes_[np.argmax(some_digit_scores)])
+
+from sklearn.multiclass import OneVsOneClassifier
+ovo_clf = OneVsOneClassifier(SGDClassifier(random_state=42))
+ovo_clf.fit(X_train,y_train)
+# res = ovo_clf.predict([some_digit])
+# print(res)
+# print(len(ovo_clf.estimators_))
+
+# 误差分析
+# 数据标准化
+from sklearn.preprocessing import StandardScaler
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train.astype(np.float64))
+# cross_val_score(sgd_clf, X_train_scaled, y_train, cv=3, scoring="accuracy")
+# # y_train_pred = cross_val_predict(sgd_clf, X_train_scaled, y_train, cv=3)
+# # conf_matrix = confusion_matrix(y_train,y_train_pred)
+# # # 混淆矩阵可视化
+# # plt.matshow(conf_matrix,cmap=plt.cm.gray)
+# # plt.show()
+
+# 多标签分类
+from sklearn.neighbors import KNeighborsClassifier
+y_train_large = (y_train >= 7)
+y_train_odd = (y_train % 2 == 1)
+y_multilabel = np.c_[y_train_large,y_train_odd]
+knn_clf = KNeighborsClassifier()
+knn_clf.fit(X_train,y_multilabel)
+print(knn_clf.predict([some_digit]))
+
+# 多输出,多类分类
