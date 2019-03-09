@@ -26,4 +26,3 @@ setp2_2 = ("ToBinary",Binarizer())
 # 对新建整体并行处理
 step2 = ("FeatureUnion",FeatureUnion(transformer_list=[step2_1,setp2_2]))
 
-#
