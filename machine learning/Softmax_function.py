@@ -53,3 +53,40 @@ def softmax_loss_naive(W,X,y,reg):
 
     return loss,dW
 
+
+def softmax_loss_vectorized(W,X,y,reg):
+    """
+    Softmax loss function,vectorized version
+
+    Inputs and outputs are the same as softmax_loss_naive
+    :param W:
+    :param X:
+    :param y:
+    :param reg:
+    :return:
+    """
+    loss = 0.0
+    dW = np.zeros_like(W)
+
+    # 获得样本的数量
+    num_train = X.shape[0]
+    # 获取样本的分裂数量
+    num_classes = W.shape[1]
+    # 获取到每个样本所对应的分类的得分
+    scores = X.dot(W)
+    scores_shift = scores - np.max(scores, axis=1)
+    softmax_output = np.exp(scores_shift) / np.sum(np.exp(scores_shift), axis=1)
+    loss = -np.sum(np.log(softmax_output[range(num_train), list(y)]))
+    loss /= num_train
+    loss += 0.5 * reg * np.sum(W * W)
+
+    dS = softmax_output.copy()
+    dS[range(num_train), list(y)] += -1
+    dW = (X.T).dot(dS)
+    dW = dW / num_train + reg * W
+
+    return loss, dW
+
+
+softmax_output = np.array([[1],[2],[3]])
+print(softmax_output[range(2),0])
