@@ -188,16 +188,17 @@ if __name__ == '__main__':
     from sklearn.model_selection import train_test_split
     from sklearn.metrics import mean_squared_error
     from sklearn.ensemble import GradientBoostingRegressor
+
     #
     X = np.random.rand(100, 1) - 0.5
     y = 3 * X[:, 0] ** 2 + 0.05 * np.random.randn(100)
     X_train, X_val, y_train, y_val = train_test_split(X, y, random_state=42)
-    gbrt = GradientBoostingRegressor(max_depth=2,n_estimators=120)
-    gbrt.fit(X_train,y_train)
-    errors = [mean_squared_error(y_val,y_pred) for y_pred in gbrt.staged_predict(X_val)]
+    gbrt = GradientBoostingRegressor(max_depth=2, n_estimators=120)
+    gbrt.fit(X_train, y_train)
+    errors = [mean_squared_error(y_val, y_pred) for y_pred in gbrt.staged_predict(X_val)]
     bst_n_estimators = np.argmin(errors)
-    gbrt_best = GradientBoostingRegressor(max_depth=2,n_estimators=bst_n_estimators,random_state=42)
-    gbrt_best.fit(X_train,y_train)
+    gbrt_best = GradientBoostingRegressor(max_depth=2, n_estimators=bst_n_estimators, random_state=42)
+    gbrt_best.fit(X_train, y_train)
     min_error = np.min(errors)
     plt.figure(figsize=(11, 4))
     #
@@ -227,36 +228,37 @@ if __name__ == '__main__':
     y = mnist["label"][0]
 
     # 分割数据 (X_train,y_train) -- 训练数据 (X_val,y_val)----验证数据 (X_test,y_test) --- 测试数据
-    X_train_val,X_test,y_train_val,y_test = train_test_split(X,y,test_size=10000,random_state=42)
-    X_train,X_val,y_train,y_val = train_test_split(X_train_val,y_train_val,test_size=10000,random_state=42)
+    X_train_val, X_test, y_train_val, y_test = train_test_split(X, y, test_size=10000, random_state=42)
+    X_train, X_val, y_train, y_val = train_test_split(X_train_val, y_train_val, test_size=10000, random_state=42)
 
-    from sklearn.ensemble import RandomForestClassifier,ExtraTreesClassifier
+    from sklearn.ensemble import RandomForestClassifier, ExtraTreesClassifier
     from sklearn.svm import LinearSVC
     from sklearn.neural_network import MLPClassifier
 
-    random_forest_clf = RandomForestClassifier(n_estimators=10,random_state=42)
-    extra_trees_clf = ExtraTreesClassifier(n_estimators=10,random_state=42)
+    random_forest_clf = RandomForestClassifier(n_estimators=10, random_state=42)
+    extra_trees_clf = ExtraTreesClassifier(n_estimators=10, random_state=42)
     svm_clf = LinearSVC(random_state=42)
     mlp_clf = MLPClassifier(random_state=42)
 
-    estimators = [random_forest_clf,extra_trees_clf,svm_clf,mlp_clf]
+    estimators = [random_forest_clf, extra_trees_clf, svm_clf, mlp_clf]
     for estimator in estimators:
-        print("Training the",estimator)
-        estimator.fit(X_train,y_train)
+        print("Training the", estimator)
+        estimator.fit(X_train, y_train)
 
-    res = [estimator.score(X_val,y_val) for estimator in estimators]
+    res = [estimator.score(X_val, y_val) for estimator in estimators]
     print(res)
 
     from sklearn.ensemble import VotingClassifier
+
     named_estimators = [
-        ("random_forest",random_forest_clf),
-        ("extra_trees_clf",extra_trees_clf),
-        ("svm_clf",svm_clf),
-        ("mlp_clf",mlp_clf),
+        ("random_forest", random_forest_clf),
+        ("extra_trees_clf", extra_trees_clf),
+        ("svm_clf", svm_clf),
+        ("mlp_clf", mlp_clf),
     ]
     voting_clf = VotingClassifier(named_estimators)
-    voting_clf.fit(X_train,y_train)
-    print("voting score",voting_clf.score(X_val,y_val))
+    voting_clf.fit(X_train, y_train)
+    print("voting score", voting_clf.score(X_val, y_val))
     res = [estimator.score(X_val, y_val) for estimator in voting_clf.estimators_]
     print(res)
 
@@ -269,3 +271,19 @@ if __name__ == '__main__':
     voting_clf.score(X_val, y_val)
     voting_clf.score(X_test, y_test)
     [estimator.score(X_test, y_test) for estimator in voting_clf.estimators_]
+
+    # Stacking Ensemble
+    X_val_predictions = np.empty((len(X_val), len(estimators)), dtype=np.float32)
+    for index, estimator in enumerate(estimators):
+        X_val_predictions[:, index] = estimator.predict(X_val)
+    print(X_val_predictions)
+    rnd_forest_blender = RandomForestClassifier(n_estimators=200, oob_score=True, random_state=42)
+    rnd_forest_blender.fit(X_val_predictions, y_val)
+    print(rnd_forest_blender.oob_score_)
+    X_test_predictions = np.empty((len(X_test), len(estimators)), dtype=np.float32)
+    for index, estimator in enumerate(estimators):
+        X_test_predictions[:, index] = estimator.predict(X_test)
+    y_pred = rnd_forest_blender.predict(X_test_predictions)
+    from sklearn.metrics import accuracy_score
+
+    print(accuracy_score(y_test, y_pred))
