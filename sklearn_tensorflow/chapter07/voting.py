@@ -49,7 +49,9 @@ def plot_decision_boundary(clf, X, y, axes=[-1.5, 2.5, -1, 1.5], alpha=0.5, cont
     plt.xlabel(r"$x_1$", fontsize=18)
     plt.ylabel(r"$x_2$", fontsize=18, rotation=0)
 
-
+def plot_predictions(regressors,X,y,axes,label=None,style="r-",data_style="b.",data_label=None):
+    x1 = np.linspace(axes[0],axes[1],500)
+    y_pred = sum(regressors.predict(x1.reshape(-1,1)) for regressors in regressors)
 if __name__ == '__main__':
     # 采用500决策树集成
     # bag_clf = BaggingClassifier(DecisionTreeClassifier(splitter="random",max_leaf_nodes=16,random_state=42),
@@ -117,3 +119,24 @@ if __name__ == '__main__':
     #             plt.text(-0.3, 0.90, "5", fontsize=14)
     #
     #     plt.show()
+
+
+    # Gradient Boosting
+    np.random.seed(42)
+    X = np.random.rand(100, 1) - 0.5
+    y = 3 * X[:, 0] ** 2 + 0.05 * np.random.randn(100)
+
+    from sklearn.tree import DecisionTreeRegressor
+
+    tree_reg1 = DecisionTreeRegressor(max_depth=2,random_state=42)
+    tree_reg1.fit(X,y)
+    y2 = y - tree_reg1.predict(X)
+    tree_reg2 = DecisionTreeRegressor(max_depth=2,random_state=42)
+    tree_reg2.fit(X,y2)
+    y3 = y2 - tree_reg2.predict(X)
+    tree_reg3 = DecisionTreeRegressor(max_depth=2,random_state=42)
+    tree_reg3.fit(X,y3)
+    X_new = np.array([[0.8]])
+    y_pred = sum(tree.predict(X_new) for tree in (tree_reg1, tree_reg2, tree_reg3))
+    print(y_pred)
+
