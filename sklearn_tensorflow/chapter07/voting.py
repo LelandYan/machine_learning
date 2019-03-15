@@ -217,3 +217,55 @@ if __name__ == '__main__':
     #
     # plt.show()
 
+    # Voting Classifier
+    from sklearn.model_selection import train_test_split
+    from scipy.io import loadmat
+
+    # 导入数据
+    mnist = loadmat("mnist-original.mat")
+    X = mnist["data"].T
+    y = mnist["label"][0]
+
+    # 分割数据 (X_train,y_train) -- 训练数据 (X_val,y_val)----验证数据 (X_test,y_test) --- 测试数据
+    X_train_val,X_test,y_train_val,y_test = train_test_split(X,y,test_size=10000,random_state=42)
+    X_train,X_val,y_train,y_val = train_test_split(X_train_val,y_train_val,test_size=10000,random_state=42)
+
+    from sklearn.ensemble import RandomForestClassifier,ExtraTreesClassifier
+    from sklearn.svm import LinearSVC
+    from sklearn.neural_network import MLPClassifier
+
+    random_forest_clf = RandomForestClassifier(n_estimators=10,random_state=42)
+    extra_trees_clf = ExtraTreesClassifier(n_estimators=10,random_state=42)
+    svm_clf = LinearSVC(random_state=42)
+    mlp_clf = MLPClassifier(random_state=42)
+
+    estimators = [random_forest_clf,extra_trees_clf,svm_clf,mlp_clf]
+    for estimator in estimators:
+        print("Training the",estimator)
+        estimator.fit(X_train,y_train)
+
+    res = [estimator.score(X_val,y_val) for estimator in estimators]
+    print(res)
+
+    from sklearn.ensemble import VotingClassifier
+    named_estimators = [
+        ("random_forest",random_forest_clf),
+        ("extra_trees_clf",extra_trees_clf),
+        ("svm_clf",svm_clf),
+        ("mlp_clf",mlp_clf),
+    ]
+    voting_clf = VotingClassifier(named_estimators)
+    voting_clf.fit(X_train,y_train)
+    print("voting score",voting_clf.score(X_val,y_val))
+    res = [estimator.score(X_val, y_val) for estimator in voting_clf.estimators_]
+    print(res)
+
+    voting_clf.set_params(svm_clf=None)
+    voting_clf.estimators
+    voting_clf.estimators_
+    del voting_clf.estimators_[2]
+    print(voting_clf.score(X_val, y_val))
+    voting_clf.voting = "soft"
+    voting_clf.score(X_val, y_val)
+    voting_clf.score(X_test, y_test)
+    [estimator.score(X_test, y_test) for estimator in voting_clf.estimators_]
