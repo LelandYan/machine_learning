@@ -8,12 +8,18 @@ class random_pratice:
         self.file_num = None
 
     def shuffle(self):
-        from numpy.random import permutation,seed
-        seed(42)
         length = self.file_num + 1
-        first_item = permutation(range(1, length))
-        second_item = permutation(range(1, length))
-        third_item = permutation(range(1, length))
+        # from numpy.random import permutation,seed
+        #  seed(42)
+        # first_item = permutation(range(1, length))
+        # second_item = permutation(range(1, length))
+        # third_item = permutation(range(1, length))
+        # 如没有安装numpy，使用random，seed
+        from random import seed,sample
+        seed(42)
+        first_item = sample(range(1, length),self.file_num)
+        second_item = sample(range(1, length),self.file_num)
+        third_item = sample(range(1, length),self.file_num)
         self._item_list = []
         for i1, i2, i3 in zip(first_item, second_item, third_item):
             if (i1 != i2 and i2 != i3 and i1 != i3):
@@ -45,11 +51,12 @@ class random_pratice:
     def make_dir(self):
         self.item_path = []
         from os import path,removedirs,makedirs
+        from shutil import rmtree
         for name in self.name_item.keys():
             item_path = path.join(self.abs_path,name)
             self.item_path.append(item_path)
             if path.exists(item_path):
-                removedirs(item_path)
+                rmtree(item_path)
             makedirs(item_path)
 
     def run(self):
