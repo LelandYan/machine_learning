@@ -229,5 +229,30 @@ plt.title("Original", fontsize=16)
 plt.subplot(122)
 plot_digits(X_recovered[::2100])
 plt.title("Compressed", fontsize=16)
+plt.show()
+# save_fig("mnist_compression_plot")
 
-save_fig("mnist_compression_plot")
+# 增量PCA（Incrementtal PCA）
+from sklearn.decomposition import IncrementalPCA
+
+n_batches = 100
+inc_pca = IncrementalPCA(n_components=154)
+for X_batch in np.array_split(X_train, n_batches):
+    print(".", end="") # not shown in the book
+    inc_pca.partial_fit(X_batch)
+
+X_reduced = inc_pca.transform(X_train)
+X_recovered_inc_pca = inc_pca.inverse_transform(X_reduced)
+plt.figure(figsize=(7,4))
+plt.subplot(121)
+plot_digits(X_train[::2100])
+plt.subplot(122)
+plot_digits(X_recovered_inc_pca[::2100])
+plt.tight_layout()
+plt.show()
+
+# Using memmap()
+filename = 'mnist-original.mat'
+m,n = X_train.shape
+X_mm = np.memmap(filename,dtype="float32",mode="write",shape=(m,n))
+
