@@ -8,13 +8,13 @@ import pandas as pd
 import numpy as np
 import seaborn as sns
 
-df = pd.read_csv("./data/HR.csv")
-sns.set_style(style="darkgrid")
-sns.set_context(context="poster",font_scale=0.8)
-sns.set_palette("summer")
-f= plt.figure()
-f.add_subplot(131)
-sns.distplot(df["satisfaction_level"],bins=10,)
+# df = pd.read_csv("./data/HR.csv")
+# sns.set_style(style="darkgrid")
+# sns.set_context(context="poster",font_scale=0.8)
+# sns.set_palette("summer")
+# f= plt.figure()
+# f.add_subplot(131)
+# sns.distplot(df["satisfaction_level"],bins=10,)
 
 
 # sns.countplot(x="salary",data=df,hue="department")
@@ -28,3 +28,7 @@ sns.distplot(df["satisfaction_level"],bins=10,)
 # for x,y in zip(np.arange(len(df["salary"].value_counts()))+0.5,df["salary"].value_counts()):
 #     plt.text(x,y,y,ha="center",va="bottom")
 # plt.show()
+
+# 交叉分析方法
+df = pd.read_csv("./data/HR.csv")
+dp_indices = df.groupby(by="department")
