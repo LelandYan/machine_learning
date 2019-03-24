@@ -5,9 +5,10 @@ __date__ = '2019/3/22 9:14'
 import matplotlib.pyplot as plt
 import matplotlib as mpl
 import pandas as pd
+import scipy.stats as ss
 import numpy as np
 import seaborn as sns
-
+sns.set_context(font_scale=1.5)
 # df = pd.read_csv("./data/HR.csv")
 # sns.set_style(style="darkgrid")
 # sns.set_context(context="poster",font_scale=0.8)
@@ -30,5 +31,48 @@ import seaborn as sns
 # plt.show()
 
 # 交叉分析方法
+# df = pd.read_csv("./data/HR.csv")
+# dp_indices = df.groupby(by="department").indices
+# sales_values = df["left"].iloc[dp_indices["sales"]].values
+# technical_values = df["left"].iloc[dp_indices["technical"]].values
+# # print(ss.ttest_ind(sales_values,technical_values)[1])
+# dp_keys = list(dp_indices.keys())
+# dp_t_mat = np.zeros([len(dp_keys),len(dp_keys)])
+# for i in range(len(dp_keys)):
+#     for j in range(len(dp_keys)):
+#         p_value = ss.ttest_ind(df["left"].iloc[dp_indices[dp_keys[i]]].values,df["left"].iloc[dp_indices[dp_keys[j]]].values)[1]
+#         if p_value <0.05:
+#             dp_t_mat[i][j] = -1
+#         else:
+#             dp_t_mat[i][j] = p_value
+# sns.heatmap(dp_t_mat,xticklabels=dp_keys,yticklabels=dp_keys)
+# plt.show()
+
+# 透视表
+# df = pd.read_csv("./data/HR.csv")
+# piv_tb = pd.pivot_table(df,values="left",index=["promotion_last_5years","salary"],columns=["Work_accident"],\
+#                         aggfunc=np.mean)
+# sns.heatmap(piv_tb,vmin=0,vmax=1)
+# plt.show()
+
+
+# 分组分析
+sns.set_context(font_scale=1.5)
 df = pd.read_csv("./data/HR.csv")
-dp_indices = df.groupby(by="department")
+# sns.barplot(x="salary",y="left",hue="department",data=df)
+# plt.show()
+# sl_s = df["satisfaction_level"]
+# sns.barplot(list(range(len(sl_s))),sl_s.sort_values())
+# plt.show()
+
+# 相关分析
+# sns.heatmap(df.corr(),vmin=-1,vmax=1,cmap=sns.color_palette("RdBu",n_colors=128))
+# plt.show()
+
+# 因子分析
+from sklearn.decomposition import PCA
+my_pca = PCA(n_components=7)
+lower_mat = my_pca.fit_transform(df.drop(labels=["salary","department","left"],axis=1))
+print("Ratio:",my_pca.explained_variance_ratio_)
+sns.heatmap(pd.DataFrame(lower_mat).corr(),vmin=-1,vmax=1,cmap=sns.color_palette("RdBu",n_colors=128))
+plt.show()
