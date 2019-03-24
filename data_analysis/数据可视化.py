@@ -70,9 +70,33 @@ df = pd.read_csv("./data/HR.csv")
 # plt.show()
 
 # 因子分析
-from sklearn.decomposition import PCA
-my_pca = PCA(n_components=7)
-lower_mat = my_pca.fit_transform(df.drop(labels=["salary","department","left"],axis=1))
-print("Ratio:",my_pca.explained_variance_ratio_)
-sns.heatmap(pd.DataFrame(lower_mat).corr(),vmin=-1,vmax=1,cmap=sns.color_palette("RdBu",n_colors=128))
-plt.show()
+# from sklearn.decomposition import PCA
+# my_pca = PCA(n_components=7)
+# lower_mat = my_pca.fit_transform(df.drop(labels=["salary","department","left"],axis=1))
+# print("Ratio:",my_pca.explained_variance_ratio_)
+# sns.heatmap(pd.DataFrame(lower_mat).corr(),vmin=-1,vmax=1,cmap=sns.color_palette("RdBu",n_colors=128))
+# plt.show()
+
+from sklearn.feature_selection import SelectKBest,RFE,SelectFromModel
+
+df = pd.DataFrame({'A':ss.norm.rvs(size=10),'B':ss.norm.rvs(size=10),'C':ss.norm.rvs(size=10),"D":np.random.randint(low=0,high=2,size=10)})
+print(df)
+from sklearn.svm import SVR
+from sklearn.tree import DecisionTreeRegressor
+
+X = df.loc[:,["A","B","C"]]
+Y = df.loc[:,"D"]
+
+# 过滤思想
+skb = SelectKBest(k=2)
+skb.fit(X,Y)
+skb.transform(X)
+
+# ;包裹思想
+rfe = RFE(estimator=SVR(kernel="linear"),n_features_to_select=2,step=1)
+rfe.fit_transform(X,Y)
+
+# 嵌入思想
+sfm = SelectFromModel(estimator=DecisionTreeRegressor(),threshold=0.1) # threshold 设置的阀值
+sfm.fit_transform(X,Y)
+
