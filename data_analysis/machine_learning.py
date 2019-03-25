@@ -87,8 +87,9 @@ def hr_modeling(features, label):
     from sklearn.naive_bayes import GaussianNB,BernoulliNB
     from sklearn.tree import DecisionTreeClassifier,export_graphviz
     import pydotplus
-    from sklearn.ensemble import RandomForestClassifier,AdaBoostClassifier
+    from sklearn.ensemble import RandomForestClassifier,AdaBoostClassifier,GradientBoostingClassifier
     from sklearn.svm import SVC
+    from sklearn.linear_model import LogisticRegression
     from sklearn.externals.six import StringIO
     # BernoulliNB 适合离散二值的
     # GaussianNB
@@ -101,6 +102,8 @@ def hr_modeling(features, label):
     models.append(("SVC",SVC(kernel='rbf',C=1000)))
     models.append(("RandomForest",RandomForestClassifier()))
     models.append(("AdaBoostClassifier",AdaBoostClassifier(n_estimators=100)))
+    models.append(("LogisticRegression",LogisticRegression(C=1000,tol=1e-10,solver="sag",max_iter=10000)))
+    models.append(("GradientBoostingClassifier",GradientBoostingClassifier(max_depth=6,n_estimators=100)))
     for clf_name,clf in models:
         clf.fit(X_train,Y_train)
         xy_lst = [(X_train,Y_train),(X_validation,Y_validation),(X_test,Y_test)]
@@ -120,9 +123,22 @@ def hr_modeling(features, label):
             #                            rounded=True)
             # graph = pydotplus.graph_from_dot_data(dot_data)
             # graph.write_pdf("dt_tree.pdf")
+def repr_test(features,label):
+    # print(features)
+    # print(label)
+    from sklearn.linear_model import LinearRegression,Ridge,Lasso
+    regr = LinearRegression()
+    # regr = Ridge(alpha=1)
+    # regr = Lasso(alpha=0.2)
+    regr.fit(features.values,label.values)
+    Y_pred = regr.predict(features.values)
+    print(regr.coef_)
+    from sklearn.metrics import mean_squared_error
+    print("MSE:",mean_squared_error(Y_pred,label.values))
 
 def main():
     features, label = hr_preprocessing()
+    # repr_test(features[["number_project","average_monthly_hours"]],features["last_evaluation"])
     hr_modeling(features, label)
 
 
