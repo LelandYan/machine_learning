@@ -80,7 +80,7 @@ df = pd.read_csv("./data/HR.csv")
 from sklearn.feature_selection import SelectKBest,RFE,SelectFromModel
 
 df = pd.DataFrame({'A':ss.norm.rvs(size=10),'B':ss.norm.rvs(size=10),'C':ss.norm.rvs(size=10),"D":np.random.randint(low=0,high=2,size=10)})
-print(df)
+# print(df)
 from sklearn.svm import SVR
 from sklearn.tree import DecisionTreeRegressor
 
@@ -100,3 +100,11 @@ rfe.fit_transform(X,Y)
 sfm = SelectFromModel(estimator=DecisionTreeRegressor(),threshold=0.1) # threshold 设置的阀值
 sfm.fit_transform(X,Y)
 
+
+from sklearn.preprocessing import Normalizer
+# 正规化是对行进行正规化
+# Normalizer(norm="l1").fit_transform(np.array([[1,1,3]]))
+
+print(np.array([1,1,3]).shape)
+print(np.array([1,1,3]).reshape(-1,1).shape)
+print(np.array([[1,1,3]]).shape)
