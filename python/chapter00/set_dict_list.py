@@ -43,7 +43,7 @@ from itertools import chain
 # rset = [x for x in rest if x]
 # print(rset)
 
-import os,stat
+import os, stat
 
 # s = "123"
 # print(s.ljust(20,'='))
@@ -52,9 +52,57 @@ import os,stat
 # import struct
 # struct.unpack()
 
-#访问文件的大小
-import os,stat
+# 访问文件的大小
+import os, stat
 # s = os.stat("deque_learning.py")
 # 获取文件类型
 # print(s.st_mode)
-print(dir(os.path))
+# print(dir(os.path))
+
+# 创建临时文件对象
+from tempfile import TemporaryFile, NamedTemporaryFile
+
+from xml.etree.ElementTree import parse
+
+
+class IntTuple(tuple):
+    def __new__(cls, iterable):
+        g = (x for x in iterable if isinstance(x, int) and x > 0)
+        return super(IntTuple, cls).__new__(cls, g)
+    # def __init__(self,iterable):
+    #     super(IntTuple,self).__init__(iterable)
+
+
+class Player:
+    def __init__(self, uid, name, status=0, level=1):
+        self.uid = uid
+        self.name = name
+        self.stat = status
+        self.level = level
+
+
+# __slots__ = [] 阻止动态绑定属性
+class Player2:
+    __slots__ = ["uid", "name", "stat", "level"]
+
+    def __init__(self, uid, name, status=0, level=1):
+        self.uid = uid
+        self.name = name
+        self.stat = status
+        self.level = level
+    def __enter__(self):
+        return self
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        pass
+    def getUid(self):
+        return self.uid
+    def setUid(self,uid):
+        self.uid = uid
+    R = property(getUid,setUid)
+import telnetlib
+if __name__ == '__main__':
+    
+    # t = IntTuple([1,-1,'abc',6,['x','y'],3])
+    # print(t)
+    pass
+    Player("001",'Jim')
