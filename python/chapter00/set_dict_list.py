@@ -80,8 +80,10 @@ class Player:
         self.stat = status
         self.level = level
 
-
+from functools import total_ordering
+from abc import ABCMeta,abstractmethod
 # __slots__ = [] 阻止动态绑定属性
+@total_ordering
 class Player2:
     __slots__ = ["uid", "name", "stat", "level"]
 
@@ -101,8 +103,13 @@ class Player2:
     R = property(getUid,setUid)
 import telnetlib
 if __name__ == '__main__':
-    
+
     # t = IntTuple([1,-1,'abc',6,['x','y'],3])
     # print(t)
     pass
     Player("001",'Jim')
+    import weakref
+    a_wref = weakref.ref(1)
+    from threading import Thread
+    import Queue
+
