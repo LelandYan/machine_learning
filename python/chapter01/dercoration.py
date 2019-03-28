@@ -133,24 +133,24 @@
 #     url_producer = UrlProducer(sem)
 #     url_producer.start()
 
-import time
-from concurrent.futures import ThreadPoolExecutor,as_completed
-
-
-def get_html(times):
-    time.sleep(times)
-    print(f"got page {times} success")
-    return times
-
-
-executor = ThreadPoolExecutor(max_workers=2)
-urls = [2,3,4]
-all_task = [executor.submit(get_html,(url)) for url in urls]
-# for future in as_completed(all_task):
+# import time
+# from concurrent.futures import ThreadPoolExecutor,as_completed
+#
+#
+# def get_html(times):
+#     time.sleep(times)
+#     print(f"got page {times} success")
+#     return times
+#
+#
+# executor = ThreadPoolExecutor(max_workers=2)
+# urls = [2,3,4]
+# all_task = [executor.submit(get_html,(url)) for url in urls]
+# # for future in as_completed(all_task):
 #     data = future.result()
 #     print(f"get {data} page success")
-for data in executor.map(get_html,urls):
-    print(f"get {data} page success")
+# for data in executor.map(get_html,urls):
+#     print(f"get {data} page success")
 
 # task1 = executor.submit(get_html, (3))
 # task2 = executor.submit(get_html, (2))
@@ -161,3 +161,11 @@ for data in executor.map(get_html,urls):
 # print(task2.cancel())
 # # 获取返回的结果
 # print(task1.result())
+import dis
+a  = 1
+def fun():
+    global  a
+    a += 1
+
+print(dis.dis(a))
+
