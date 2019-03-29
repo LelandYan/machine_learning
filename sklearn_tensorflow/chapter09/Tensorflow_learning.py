@@ -121,13 +121,30 @@ housing = pd.read_csv("cal_housing.data", header=None)
 housing_data = housing.iloc[:, :-1].values
 housing_target = housing.iloc[:, -1].values
 m, n = housing_data.shape
-# print(f"数据集:{m}行，{n}列")
-# scaler = StandardScaler()
-# scaled_housing_data = scaler.fit_transform(housing_data)
-# scaled_housing_data_plus_bias = np.c_[np.ones((m,1)),scaled_housing_data]
-#
-# learning_rate = 0.01
-#
+print(f"数据集:{m}行，{n}列")
+scaler = StandardScaler()
+scaled_housing_data = scaler.fit_transform(housing_data)
+scaled_housing_data_plus_bias = np.c_[np.ones((m, 1)), scaled_housing_data]
+n_epochs = 1000
+learning_rate = 0.01
+X = tf.constant(scaled_housing_data_plus_bias, dtype=tf.float32, name="X")
+y = tf.constant(housing_target.reshape(-1, 1), dtype=tf.float32, name="y")
+theta = tf.Variable(tf.random_uniform([n + 1, 1], -1.0, 1.0, seed=42), name="theta")
+y_pred = tf.matmul(X, theta, name="predictions")
+error = y_pred - y
+mse = tf.reduce_mean(tf.square(error), name="mse")
+optimizer = tf.train.GradientDescentOptimizer(learning_rate=learning_rate)
+training_op = optimizer.minimize(mse)
+init = tf.global_variables_initializer()
+with tf.Session() as sess:
+    sess.run(init)
+
+    for epoch in range(n_epochs):
+        if epoch % 100 == 0:
+            print("Epoch", epoch, "MSE =", mse.eval())
+        sess.run(training_op)
+    best_theta = theta.eval()
+print("Best theta:", best_theta)
 # X = tf.placeholder(tf.float32,shape=(None,n+1),name="X")
 # y = tf.placeholder(tf.float32,shape=(None,1),name="y")
 # theta = tf.Variable(tf.random_uniform([n+1,1],-1.0,1.0,seed=42),name="theta")
@@ -160,7 +177,7 @@ m, n = housing_data.shape
 # print(best_theta)
 
 # Using the normal equation
-housing_data_plus_bias = np.c_[np.ones((m, 1)), housing_data]
+# housing_data_plus_bias = np.c_[np.ones((m, 1)), housing_data]
 # X = tf.constant(housing_data_plus_bias, dtype=tf.float32, name="X")
 # y = tf.constant(housing_target.reshape(-1, 1), dtype=tf.float32, name='y')
 # XT = tf.transpose(X)
