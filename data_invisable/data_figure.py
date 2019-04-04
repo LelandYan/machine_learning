@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 Aupr_value = np.loadtxt("CMLDR_Aupr_values.txt").ravel()
 plt.plot([i for i in range(1,11)],Aupr_value)
-plt.axis([0,11,0.43,0.47])
+plt.axis([0,10,0.2,0.47])
 plt.xlabel("times")
 plt.ylabel("aupr_values")
 plt.savefig("CMLDR_Aupr_values.png")
