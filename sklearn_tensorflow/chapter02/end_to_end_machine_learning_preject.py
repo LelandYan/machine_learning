@@ -48,6 +48,8 @@ def load_housing_data(housing_path=HOUSING_PATH):
 housing = load_housing_data()
 
 
+from sklearn.model_selection import train_test_split
+
 # print(housing.info())
 # print(housing['ocean_proximity'].value_counts())
 # print(housing.describe())
