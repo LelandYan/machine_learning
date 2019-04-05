@@ -151,8 +151,8 @@ housing_num = housing.drop("ocean_proximity", axis=1)
 imputer.fit(housing_num)
 X = imputer.transform(housing_num)
 
-housing_tr = pd.DataFrame(X, columns=housing_num.columns, index=list(housing.index.values))
-print(housing_tr.loc[sample_incomplete_row.index.values])
+# housing_tr = pd.DataFrame(X, columns=housing_num.columns, index=list(housing.index.values))
+# print(housing_tr.loc[sample_incomplete_row.index.values])
 
 housing_tr = pd.DataFrame(X, columns=housing_num.columns)
 
@@ -204,6 +204,7 @@ num_pipeline = Pipeline([
     ('std_scaler', StandardScaler()),
 ])
 from CategoricalEncoder import CategoricalEncoder
+
 cat_pipeline = Pipeline([
     ('selector', DataFrameSelector(cat_attribute)),
     ('cat_encoder', CategoricalEncoder(encoding="onehot-dense")),
@@ -219,6 +220,96 @@ housing_prepared = full_pipeline.fit_transform(housing)
 from sklearn.linear_model import LinearRegression
 
 lin_reg = LinearRegression()
-lin_reg.fit(housing_prepared,housing_lables)
+lin_reg.fit(housing_prepared, housing_lables)
+some_data = housing.iloc[:5]
+some_labels = housing_lables.iloc[:5]
+some_data_prepared = full_pipeline.transform(some_data)
+# print("Predictions: ",lin_reg.predict(some_data_prepared))
+# print("Labels: ",list(some_labels))
 
 
+from sklearn.metrics import mean_squared_error
+
+housing_predictions = lin_reg.predict(housing_prepared)
+lin_mse = mean_squared_error(housing_lables, housing_predictions)
+lin_mse = np.sqrt(lin_mse)
+print(lin_mse)
+
+from sklearn.tree import DecisionTreeRegressor
+
+tree_reg = DecisionTreeRegressor(random_state=42)
+tree_reg.fit(housing_prepared, housing_lables)
+housing_predictions = tree_reg.predict(housing_prepared)
+tree_mse = mean_squared_error(housing_lables, housing_predictions)
+tree_rmse = np.sqrt(tree_mse)
+print(tree_mse)
+
+from sklearn.ensemble import RandomForestRegressor
+
+models = []
+models.append(("LR", LinearRegression()))
+models.append(("DR", DecisionTreeRegressor()))
+models.append(("RF", RandomForestRegressor()))
+
+from sklearn.model_selection import cross_val_score, KFold
+
+names = []
+results = []
+for name, model in models:
+    kfold = KFold(n_splits=10, random_state=42)
+    result = np.sqrt(-cross_val_score(model, housing_prepared, housing_lables, scoring='neg_mean_squared_error'))
+    names.append(name)
+    results.append(result)
+    print("{} Mean:{:.4f}(Std:{:.4f})".format(name, result.mean(), result.std()))
+
+from sklearn.model_selection import GridSearchCV
+
+param_grid = [
+    # try 12 (3×4) combinations of hyperparameters
+    {'n_estimators': [3, 10, 30], 'max_features': [2, 4, 6, 8]},
+    # then try 6 (2×3) combinations with bootstrap set as False
+    {'bootstrap': [False], 'n_estimators': [3, 10], 'max_features': [2, 3, 4]},
+]
+
+forest_reg = RandomForestRegressor(random_state=42)
+# train across 5 folds, that's a total of (12+6)*5=90 rounds of training
+grid_search = GridSearchCV(forest_reg, param_grid, cv=5,
+                           scoring='neg_mean_squared_error',
+                           return_train_score=True)
+grid_search.fit(housing_prepared, housing_lables)
+print(grid_search.best_params_)
+
+from sklearn.model_selection import RandomizedSearchCV
+from scipy.stats import randint
+
+param_distribs = {
+    'n_estimators': randint(low=1, high=200),
+    'max_features': randint(low=1, high=8),
+}
+
+forest_reg = RandomForestRegressor(random_state=42)
+rnd_search = RandomizedSearchCV(forest_reg, param_distributions=param_distribs,
+                                n_iter=10, cv=5, scoring='neg_mean_squared_error', random_state=42)
+rnd_search.fit(housing_prepared, housing_lables)
+
+
+def indices_of_top_k(arr, k):
+    return np.sort(np.argpartition(np.array(arr), -k)[-k:])
+class TopFeatureSelector(BaseEstimator, TransformerMixin):
+    def __init__(self, feature_importances, k):
+        self.feature_importances = feature_importances
+        self.k = k
+    def fit(self, X, y=None):
+        self.feature_indices_ = indices_of_top_k(self.feature_importances, self.k)
+        return self
+    def transform(self, X):
+        return X[:, self.feature_indices_]
+
+k = 5
+# feature_importances = grid_search.best_estimator_.feature_importances_
+# extra_attribs = ["rooms_per_hhold", "pop_per_hhold", "bedrooms_per_room"]
+# cat_encoder = full_pipeline.named_transformers_["cat"]
+# cat_one_hot_attribs = list(cat_encoder.categories_[0])
+# attributes = num_attribs + extra_attribs + cat_one_hot_attribs
+# sorted(zip(feature_importances, attributes), reverse=True)
+# top_k_feature_indices = indices_of_top_k(feature_importances, k)
