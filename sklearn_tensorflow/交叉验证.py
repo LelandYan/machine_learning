@@ -56,3 +56,12 @@ from sklearn.model_selection import ShuffleSplit
 # StratifiedKFold 指定分组进行无放回抽样
 from sklearn.model_selection import StratifiedKFold
 
+
+a = np.array([-1.3828788, -1.4302242])
+
+b = np.array([9,66])
+
+from sklearn.metrics import precision_recall_curve,auc
+precisoin_r,recall_r,thresholds_r = precision_recall_curve(a,b)
+
+
