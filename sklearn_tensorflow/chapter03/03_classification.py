@@ -17,8 +17,8 @@ y = mnist["label"][0]
 # plt.axis('off')
 # plt.show()
 # print(y[0])
-y = y.astype(np.uint8)
 
+y = y.astype(np.uint8)
 
 def plot_digit(data):
     image = data.reshape(28, 28)
@@ -26,7 +26,7 @@ def plot_digit(data):
     plt.axis('off')
 
 
-# EXTRA
+# # EXTRA
 def plot_digits(instances, image_per_row=10, **options):
     size = 28
     # 一行显示有多少张图片
@@ -48,7 +48,76 @@ def plot_digits(instances, image_per_row=10, **options):
     plt.axis("off")
 
 
-plt.figure(figsize=(9, 9))
-example_images = X[:100]
-plot_digits(example_images, image_per_row=10)
-plt.show()
+# plt.figure(figsize=(9, 9))
+# example_images = X[:100]
+# plot_digits(example_images, image_per_row=10)
+# plt.show()
+
+from sklearn.model_selection import train_test_split
+
+X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=1/7,random_state=42)
+
+# Binary classifier
+y_train_5 = (y_train == 5)
+y_test_5 = (y_test == 5)
+
+from sklearn.linear_model import SGDClassifier
+
+sgd_clf = SGDClassifier(max_iter=1000,tol=1e-3,random_state=42)
+sgd_clf.fit(X_train,y_train_5)
+some_digit = X[36000]
+# print(y[36000])
+# print(sgd_clf.predict([some_digit]))
+# plot_digit(X[36000])
+# plt.show()
+
+
+# from sklearn.model_selection import cross_val_score
+# res = cross_val_score(sgd_clf,X_train,y_train_5,cv=3,scoring='accuracy')
+# print(res)
+#
+# from sklearn.model_selection import StratifiedKFold
+# from sklearn.base import clone
+#
+# skfolds = StratifiedKFold(n_splits=3,random_state=42)
+#
+# for train_index,test_index in skfolds.split(X_train,y_train_5):
+#     clone_clf = clone(sgd_clf)
+#     X_train_folds = X_train[train_index]
+#     y_train_folds = y_train_5[train_index]
+#     X_test_fold = X_train[test_index]
+#     y_test_fold = y_train_5[test_index]
+#
+#     clone_clf.fit(X_train_folds,y_train_folds)
+#     y_pred = clone_clf.predict(X_test_fold)
+#     n_correct  =sum(y_pred == y_test_fold)
+#     print(n_correct / len(y_pred))
+
+from sklearn.model_selection import cross_val_predict
+
+# y_train_pred = cross_val_predict(sgd_clf,X_train,y_train_5,cv=3)
+# from sklearn.metrics import confusion_matrix
+# print(confusion_matrix(y_train_5,y_train_pred))
+
+y_scores = cross_val_predict(sgd_clf,X_train,y_train_5,cv=3,method='decision_function')
+# print(y_scores.shape)
+# print(y_scores)
+from sklearn.metrics import precision_recall_curve
+precisions,recalls,thresholds = precision_recall_curve(y_train_5,y_scores[:,1])
+
+def plot_precision_recall_vs_threshold(precisions,recalls,thresholds):
+    plt.plot(thresholds,precisions[:-1],'b--',label='Precision',linewidth=2)
+    plt.plot(thresholds,recalls[:-1],'g-',label='Recall',linewidth=2)
+    plt.legend(loc='center right',fontsize=16)
+    plt.xlabel('Threshold',fontsize=10)
+    plt.grid(True)
+    plt.axis([-60000,60000,0,1])
+
+# plt.figure(figsize=(8,4))
+# plot_precision_recall_vs_threshold(precisions,recalls,thresholds)
+# plt.plot([7813, 7813], [0., 0.9], "r:")         # Not shown
+# plt.plot([-50000, 7813], [0.9, 0.9], "r:")      # Not shown
+# plt.plot([-50000, 7813], [0.4368, 0.4368], "r:")# Not shown
+# plt.plot([7813], [0.9], "ro")                   # Not shown
+# plt.plot([7813], [0.4368], "ro")
+# plt.show()
