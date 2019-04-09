@@ -142,19 +142,22 @@ def shift_image(image,dx,dy):
     shift_image = shift(image,[dx,dy],cval=0,mode='constant')
     return shift_image.reshape([-1])
 
-image = X_train[1000]
-shift_image_down = shift_image(image,0,5)
-shift_image_left = shift_image(image,-5,0)
-
-plt.figure(figsize=(12,3))
-plt.subplot(131)
-plt.title('Original',fontsize=14)
-plt.imshow(image.reshape(28,28),interpolation='nearest',cmap='Greys')
-plt.subplot(132)
-plt.title("Shifted down", fontsize=14)
-plt.imshow(shift_image_down.reshape(28, 28), interpolation="nearest", cmap="Greys")
-plt.subplot(133)
-plt.title("Shifted left", fontsize=14)
-plt.imshow(shift_image_left.reshape(28, 28), interpolation="nearest", cmap="Greys")
-plt.show()
+# image = X_train[1000]
+# shift_image_down = shift_image(image,0,5)
+# shift_image_left = shift_image(image,-5,0)
+#
+# plt.figure(figsize=(12,3))
+# plt.subplot(131)
+# plt.title('Original',fontsize=14)
+# plt.imshow(image.reshape(28,28),interpolation='nearest',cmap='Greys')
+# plt.subplot(132)
+# plt.title("Shifted down", fontsize=14)
+# plt.imshow(shift_image_down.reshape(28, 28), interpolation="nearest", cmap="Greys")
+# plt.subplot(133)
+# plt.title("Shifted left", fontsize=14)
+# plt.imshow(shift_image_left.reshape(28, 28), interpolation="nearest", cmap="Greys")
+# plt.show()
 from sklearn.preprocessing import Imputer,LabelBinarizer
+
+from sklearn.datasets import load_iris
+
