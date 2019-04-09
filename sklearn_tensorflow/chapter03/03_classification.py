@@ -121,3 +121,40 @@ def plot_precision_recall_vs_threshold(precisions,recalls,thresholds):
 # plt.plot([7813], [0.9], "ro")                   # Not shown
 # plt.plot([7813], [0.4368], "ro")
 # plt.show()
+# from sklearn.metrics import roc_curve
+# from sklearn.dummy import DummyClassifier
+# dmy_clf = DummyClassifier()
+# y_probas_dmy = cross_val_predict(dmy_clf,X_train,y_train_5,cv=3,method='predict_proba')
+# y_scores_dmy = y_probas_dmy[:,1]
+# fpr,tpr,thresholds = roc_curve(y_train_5,y_scores_dmy)
+
+from sklearn.neighbors import KNeighborsClassifier
+# knn_clf = KNeighborsClassifier(weights='distance',n_neighbors=4)
+# knn_clf.fit(X_train,y_train)
+# y_knn_pred = knn_clf.predict(X_test)
+# from sklearn.metrics import accuracy_score
+# print(accuracy_score(y_test,y_knn_pred))
+
+from scipy.ndimage.interpolation import shift
+
+def shift_image(image,dx,dy):
+    image = image.reshape((28,28))
+    shift_image = shift(image,[dx,dy],cval=0,mode='constant')
+    return shift_image.reshape([-1])
+
+image = X_train[1000]
+shift_image_down = shift_image(image,0,5)
+shift_image_left = shift_image(image,-5,0)
+
+plt.figure(figsize=(12,3))
+plt.subplot(131)
+plt.title('Original',fontsize=14)
+plt.imshow(image.reshape(28,28),interpolation='nearest',cmap='Greys')
+plt.subplot(132)
+plt.title("Shifted down", fontsize=14)
+plt.imshow(shift_image_down.reshape(28, 28), interpolation="nearest", cmap="Greys")
+plt.subplot(133)
+plt.title("Shifted left", fontsize=14)
+plt.imshow(shift_image_left.reshape(28, 28), interpolation="nearest", cmap="Greys")
+plt.show()
+from sklearn.preprocessing import Imputer,LabelBinarizer
