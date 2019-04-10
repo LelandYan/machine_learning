@@ -63,9 +63,9 @@ y_test_5 = (y_test == 5)
 
 from sklearn.linear_model import SGDClassifier
 
-sgd_clf = SGDClassifier(max_iter=1000,tol=1e-3,random_state=42)
-sgd_clf.fit(X_train,y_train_5)
-some_digit = X[36000]
+# sgd_clf = SGDClassifier(max_iter=1000,tol=1e-3,random_state=42)
+# sgd_clf.fit(X_train,y_train_5)
+# some_digit = X[36000]
 # print(y[36000])
 # print(sgd_clf.predict([some_digit]))
 # plot_digit(X[36000])
@@ -99,11 +99,11 @@ from sklearn.model_selection import cross_val_predict
 # from sklearn.metrics import confusion_matrix
 # print(confusion_matrix(y_train_5,y_train_pred))
 
-y_scores = cross_val_predict(sgd_clf,X_train,y_train_5,cv=3,method='decision_function')
+# y_scores = cross_val_predict(sgd_clf,X_train,y_train_5,cv=3,method='decision_function')
 # print(y_scores.shape)
 # print(y_scores)
 from sklearn.metrics import precision_recall_curve
-precisions,recalls,thresholds = precision_recall_curve(y_train_5,y_scores[:,1])
+# precisions,recalls,thresholds = precision_recall_curve(y_train_5,y_scores[:,1])
 
 def plot_precision_recall_vs_threshold(precisions,recalls,thresholds):
     plt.plot(thresholds,precisions[:-1],'b--',label='Precision',linewidth=2)
@@ -160,4 +160,23 @@ def shift_image(image,dx,dy):
 from sklearn.preprocessing import Imputer,LabelBinarizer
 
 from sklearn.datasets import load_iris
+iris = load_iris()
+from sklearn.preprocessing import FunctionTransformer
+from numpy import log1p
+# FunctionTransformer(log1p).fit_transform(iris.data)
 
+
+from sklearn.feature_selection import VarianceThreshold
+print(iris.data.shape)
+print(iris.target.shape)
+# data = VarianceThreshold(threshold=3).fit_transform(iris.data)
+# print(data.shape)
+
+
+
+# 相关系数法
+from sklearn.feature_selection import SelectKBest
+from scipy.stats import pearsonr
+
+data = SelectKBest(lambda X, Y: np.array(map(lambda x:pearsonr(x, Y), X.T)).T, k=2).fit_transform(iris.data, iris.target)
+print(data.shape)
