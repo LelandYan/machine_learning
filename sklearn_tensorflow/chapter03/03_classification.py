@@ -256,3 +256,11 @@ class LR(LogisticRegression):
                     mean = coef / len(idx)
                     self.coef_[i][idx] = mean
         return self
+
+
+from sklearn.feature_selection import SelectFromModel
+
+# 带L1和L2惩罚项的逻辑回归作为基模型的特征选择
+# 参数threshold为权值系数之差的阈值
+res = SelectFromModel(LR(threshold=0.5, C=0.2)).fit_transform(iris.data, iris.target)
+print(res == iris.data)
