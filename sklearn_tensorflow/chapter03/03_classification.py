@@ -20,6 +20,7 @@ y = mnist["label"][0]
 
 y = y.astype(np.uint8)
 
+
 def plot_digit(data):
     image = data.reshape(28, 28)
     plt.imshow(image, cmap=mpl.cm.binary)
@@ -55,7 +56,7 @@ def plot_digits(instances, image_per_row=10, **options):
 
 from sklearn.model_selection import train_test_split
 
-X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=1/7,random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=1 / 7, random_state=42)
 
 # Binary classifier
 y_train_5 = (y_train == 5)
@@ -103,15 +104,18 @@ from sklearn.model_selection import cross_val_predict
 # print(y_scores.shape)
 # print(y_scores)
 from sklearn.metrics import precision_recall_curve
+
+
 # precisions,recalls,thresholds = precision_recall_curve(y_train_5,y_scores[:,1])
 
-def plot_precision_recall_vs_threshold(precisions,recalls,thresholds):
-    plt.plot(thresholds,precisions[:-1],'b--',label='Precision',linewidth=2)
-    plt.plot(thresholds,recalls[:-1],'g-',label='Recall',linewidth=2)
-    plt.legend(loc='center right',fontsize=16)
-    plt.xlabel('Threshold',fontsize=10)
+def plot_precision_recall_vs_threshold(precisions, recalls, thresholds):
+    plt.plot(thresholds, precisions[:-1], 'b--', label='Precision', linewidth=2)
+    plt.plot(thresholds, recalls[:-1], 'g-', label='Recall', linewidth=2)
+    plt.legend(loc='center right', fontsize=16)
+    plt.xlabel('Threshold', fontsize=10)
     plt.grid(True)
-    plt.axis([-60000,60000,0,1])
+    plt.axis([-60000, 60000, 0, 1])
+
 
 # plt.figure(figsize=(8,4))
 # plot_precision_recall_vs_threshold(precisions,recalls,thresholds)
@@ -137,10 +141,12 @@ from sklearn.neighbors import KNeighborsClassifier
 
 from scipy.ndimage.interpolation import shift
 
-def shift_image(image,dx,dy):
-    image = image.reshape((28,28))
-    shift_image = shift(image,[dx,dy],cval=0,mode='constant')
+
+def shift_image(image, dx, dy):
+    image = image.reshape((28, 28))
+    shift_image = shift(image, [dx, dy], cval=0, mode='constant')
     return shift_image.reshape([-1])
+
 
 # image = X_train[1000]
 # shift_image_down = shift_image(image,0,5)
@@ -157,9 +163,10 @@ def shift_image(image,dx,dy):
 # plt.title("Shifted left", fontsize=14)
 # plt.imshow(shift_image_left.reshape(28, 28), interpolation="nearest", cmap="Greys")
 # plt.show()
-from sklearn.preprocessing import Imputer,LabelBinarizer
+from sklearn.preprocessing import Imputer, LabelBinarizer
 
 from sklearn.datasets import load_iris
+
 iris = load_iris()
 from sklearn.preprocessing import FunctionTransformer
 from numpy import log1p
@@ -167,16 +174,85 @@ from numpy import log1p
 
 
 from sklearn.feature_selection import VarianceThreshold
+
 print(iris.data.shape)
 print(iris.target.shape)
 # data = VarianceThreshold(threshold=3).fit_transform(iris.data)
 # print(data.shape)
 
 
-
 # 相关系数法
 from sklearn.feature_selection import SelectKBest
 from scipy.stats import pearsonr
 
-data = SelectKBest(lambda X, Y: np.array(map(lambda x:pearsonr(x, Y), X.T)).T, k=2).fit_transform(iris.data, iris.target)
-print(data.shape)
+X = iris.data
+# print(iris.data.T.shape)
+
+# data = SelectKBest(lambda X, Y: np.array(map(lambda x:pearsonr(x, Y), X.T)).T, k=2).fit_transform(iris.data, iris.target)
+# print(data.shape)
+from sklearn.feature_selection import chi2, SelectKBest
+# 选择K个最好的特征，返回选择特征后的数据
+# res = SelectKBest(chi2, k=2).fit_transform(iris.data, iris.target)
+# print(res.shape)
+
+from sklearn.feature_selection import SelectKBest
+from sklearn.feature_selection import RFE
+from sklearn.linear_model import LogisticRegression
+
+# re =RFE(estimator=LogisticRegression(),n_features_to_select=2).fit_transform(iris.data,iris.target)
+# print(re.shape)
+
+from sklearn.feature_selection import SelectFromModel
+
+# res = SelectFromModel(LogisticRegression(penalty='l2',C=0.1)).fit_transform(iris.data,iris.target)
+# print(res.shape)
+
+
+from sklearn.linear_model import LogisticRegression
+
+
+class LR(LogisticRegression):
+    def __init__(self, threshold=0.01, dual=False, tol=1e-4, C=1.0,
+                 fit_intercept=True, intercept_scaling=1, class_weight=None,
+                 random_state=None, solver='liblinear', max_iter=100,
+                 multi_class='ovr', verbose=0, warm_start=False, n_jobs=1):
+
+        # 权值相近的阈值
+        self.threshold = threshold
+        LogisticRegression.__init__(self, penalty='l1', dual=dual, tol=tol, C=C,
+                                    fit_intercept=fit_intercept, intercept_scaling=intercept_scaling,
+                                    class_weight=class_weight,
+                                    random_state=random_state, solver=solver, max_iter=max_iter,
+                                    multi_class=multi_class, verbose=verbose, warm_start=warm_start, n_jobs=n_jobs)
+        # 使用同样的参数创建L2逻辑回归
+        self.l2 = LogisticRegression(penalty='l2', dual=dual, tol=tol, C=C, fit_intercept=fit_intercept,
+                                     intercept_scaling=intercept_scaling, class_weight=class_weight,
+                                     random_state=random_state, solver=solver, max_iter=max_iter,
+                                     multi_class=multi_class, verbose=verbose, warm_start=warm_start, n_jobs=n_jobs)
+
+    def fit(self, X, y, sample_weight=None):
+        # 训练L1逻辑回归
+        super(LR, self).fit(X, y, sample_weight=sample_weight)
+        self.coef_old_ = self.coef_.copy()
+        # 训练L2逻辑回归
+        self.l2.fit(X, y, sample_weight=sample_weight)
+
+        cntOfRow, cntOfCol = self.coef_.shape
+        # 权值系数矩阵的行数对应目标值的种类数目
+        for i in range(cntOfRow):
+            for j in range(cntOfCol):
+                coef = self.coef_[i][j]
+                # L1逻辑回归的权值系数不为0
+                if coef != 0:
+                    idx = [j]
+                    # 对应在L2逻辑回归中的权值系数
+                    coef1 = self.l2.coef_[i][j]
+                    for k in range(cntOfCol):
+                        coef2 = self.l2.coef_[i][k]
+                        # 在L2逻辑回归中，权值系数之差小于设定的阈值，且在L1中对应的权值为0
+                        if abs(coef1 - coef2) < self.threshold and j != k and self.coef_[i][k] == 0:
+                            idx.append(k)
+                    # 计算这一类特征的权值系数均值
+                    mean = coef / len(idx)
+                    self.coef_[i][idx] = mean
+        return self
