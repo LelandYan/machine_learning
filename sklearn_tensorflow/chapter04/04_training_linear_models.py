@@ -362,28 +362,88 @@ from sklearn.linear_model import LogisticRegression
 # plt.plot(X_new,y_proba[:,1],'b--',linewidth=2,label='Not-Iris-Virginica')
 # plt.show()
 
+# X = iris['data'][:,(2,3)]
+# y = (iris['target'] == 2).astype(np.int)
+#
+# log_reg = LogisticRegression(solver='lbfgs',C=10**10,random_state=42)
+# log_reg.fit(X,y)
+#
+# x0, x1 = np.meshgrid(
+#         np.linspace(2.9, 7, 500).reshape(-1, 1),
+#         np.linspace(0.8, 2.7, 200).reshape(-1, 1),
+#     )
+# X_new = np.c_[x0.ravel(), x1.ravel()]
+#
+# y_proba = log_reg.predict_proba(X_new)
+#
+# plt.figure(figsize=(10, 4))
+# plt.plot(X[y==0, 0], X[y==0, 1], "bs")
+# plt.plot(X[y==1, 0], X[y==1, 1], "g^")
+#
+# zz = y_proba[:, 1].reshape(x0.shape)
+# contour = plt.contour(x0, x1, zz, cmap=plt.cm.brg)
+
+
+# left_right = np.array([2.9, 7])
+# boundary = -(log_reg.coef_[0][0] * left_right + log_reg.intercept_[0]) / log_reg.coef_[0][1]
+# plt.show()
+
+
 X = iris['data'][:,(2,3)]
-y = (iris['target'] == 2).astype(np.int)
+y = iris['target']
+X_with_bias = np.c_[np.ones([len(X), 1]), X]
+np.random.seed(2042)
 
-log_reg = LogisticRegression(solver='lbfgs',C=10**10,random_state=42)
-log_reg.fit(X,y)
+test_ratio = 0.2
+validation_ratio = 0.2
+total_size = len(X_with_bias)
 
-x0, x1 = np.meshgrid(
-        np.linspace(2.9, 7, 500).reshape(-1, 1),
-        np.linspace(0.8, 2.7, 200).reshape(-1, 1),
-    )
-X_new = np.c_[x0.ravel(), x1.ravel()]
+test_size = int(total_size * test_ratio)
+validation_size = int(total_size * validation_ratio)
+train_size = total_size - test_size - validation_size
 
-y_proba = log_reg.predict_proba(X_new)
+rnd_indices = np.random.permutation(total_size)
 
-plt.figure(figsize=(10, 4))
-plt.plot(X[y==0, 0], X[y==0, 1], "bs")
-plt.plot(X[y==1, 0], X[y==1, 1], "g^")
+X_train = X_with_bias[rnd_indices[:train_size]]
+y_train = y[rnd_indices[:train_size]]
+X_valid = X_with_bias[rnd_indices[train_size:-test_size]]
+y_valid = y[rnd_indices[train_size:-test_size]]
+X_test = X_with_bias[rnd_indices[-test_size:]]
+y_test = y[rnd_indices[-test_size:]]
 
-zz = y_proba[:, 1].reshape(x0.shape)
-contour = plt.contour(x0, x1, zz, cmap=plt.cm.brg)
+def to_one_hot(y):
+    n_classes = y.max() + 1
+    m = len(y)
+    Y_one_hot = np.zeros((m,n_classes))
+    Y_one_hot[np.arange(m),y] = 1
+    return Y_one_hot
+# print(y_train[:10])
+# print(to_ont_hot(y_train[:10]))
 
+Y_train_one_hot = to_one_hot(y_train)
+Y_valid_one_hot = to_one_hot(y_valid)
+Y_test_one_hot = to_one_hot(y_test)
 
-left_right = np.array([2.9, 7])
-boundary = -(log_reg.coef_[0][0] * left_right + log_reg.intercept_[0]) / log_reg.coef_[0][1]
-plt.show()
+def softmax(logits):
+    exps = np.exp(logits)
+    exp_sum = np.sum(exps,axis=1,keepdims=True)
+    return exps / exp_sum
+
+n_inputs = X_train.shape[1]
+n_outputs = len(np.unique(y_train))
+
+eta = 0.01
+n_iterations = 5001
+m = len(X_train)
+epsilon = 1e-7
+
+Theta = np.random.randn(n_inputs,n_outputs)
+for iteration in range(n_iterations):
+    logits = X_train.dot(Theta)
+    Y_proba = softmax(logits)
+    loss = - np.mean(np.sum(Y_train_one_hot * np.log(Y_proba + epsilon),axis=1))
+    error = Y_proba - Y_train_one_hot
+    if iteration % 500 == 0:
+        print(iteration,loss)
+    gradients = 1 / m * X_train.T.dot(error)
+    Theta = Theta - eta * gradients
