@@ -222,26 +222,60 @@ X, y = make_moons(n_samples=1000, noise=0.4, random_state=42)
 # plt.show()
 
 from sklearn.base import BaseEstimator
+#
+# class MyLinearSVC(BaseEstimator):
+#     def __init__(self,C=1,eta0=1,eta_d=10000,n_epochs=1000,random_state=None):
+#         self.C = C
+#         self.eta0 = eta0
+#         self.n_epochs = n_epochs
+#         self.random_state = random_state
+#         self.eta_d = eta_d
+#
+#     def eta(self,epoch):
+#         return self.eta0 / (epoch + self.eta_d)
+#
+#     def fit(self,X,y):
+#         if self.random_state:
+#             np.random.seed(self.random_state)
+#         w = np.random.randn(X.shape[1],1)
+#         b = 0
+#
+#         m = len(X)
+#         t = y * 2 - 1
+#         X_t = X * t
+#         self.Js = []
+#         for epoch in range(self.n_epochs):
+# from sklearn import datasets
+#
+# iris = datasets.load_iris()
+# X = iris["data"][:, (2, 3)]  # petal length, petal width
+# y = iris["target"]
+#
+# setosa_or_versicolor = (y == 0) | (y == 1)
+# X = X[setosa_or_versicolor]
+# y = y[setosa_or_versicolor]
+#
+# from sklearn.svm import SVC,LinearSVC
+# from sklearn.linear_model import SGDClassifier
+# from sklearn.preprocessing import StandardScaler
+#
+# C = 5
+# alpha = 1 / (C * len(X))
+#
+# lin_clf = LinearSVC(loss='hinge',C=C,random_state=42)
+# svm_clf = SVC(kernel='linear',C=C)
+# sgd_clf = SGDClassifier(loss='hinge',learning_rate='constant',eta0=0.001,alpha=alpha,
+#                         max_iter=1000,tol=1e-3,random_state=42)
+# scaler = StandardScaler()
+# X_scaled = scaler.fit_transform(X)
+#
+# lin_clf.fit(X_scaled,y)
+# svm_clf.fit(X_scaled,y)
+# sgd_clf.fit(X_scaled,y)
+# print("LinearSVC:                   ", lin_clf.intercept_, lin_clf.coef_)
+# print("SVC:                         ", svm_clf.intercept_, svm_clf.coef_)
+# print("SGDClassifier(alpha={:.5f}):".format(sgd_clf.alpha), sgd_clf.intercept_, sgd_clf.coef_)
 
-class MyLinearSVC(BaseEstimator):
-    def __init__(self,C=1,eta0=1,eta_d=10000,n_epochs=1000,random_state=None):
-        self.C = C
-        self.eta0 = eta0
-        self.n_epochs = n_epochs
-        self.random_state = random_state
-        self.eta_d = eta_d
 
-    def eta(self,epoch):
-        return self.eta0 / (epoch + self.eta_d)
 
-    def fit(self,X,y):
-        if self.random_state:
-            np.random.seed(self.random_state)
-        w = np.random.randn(X.shape[1],1)
-        b = 0
 
-        m = len(X)
-        t = y * 2 - 1
-        X_t = X * t
-        self.Js = []
-        for epoch in range(self.n_epochs):
