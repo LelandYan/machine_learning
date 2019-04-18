@@ -170,25 +170,78 @@ def plot_predictions(clf,axes):
 #
 # plt.show()
 
-gamma1,gamma2 = 0.1,5
-C1,C2 = 0.001,1000
-hyperparams = (gamma1, C1), (gamma1, C2), (gamma2, C1), (gamma2, C2)
+# gamma1,gamma2 = 0.1,5
+# C1,C2 = 0.001,1000
+# hyperparams = (gamma1, C1), (gamma1, C2), (gamma2, C1), (gamma2, C2)
+#
+# svm_clf = []
+# for gamma,C in hyperparams:
+#     rbf_kernel_svm_clf = Pipeline([
+#         ('scaler',StandardScaler()),
+#         ('svm_clf',SVC(kernel='rbf',gamma=gamma,C=C))
+#     ])
+#     rbf_kernel_svm_clf.fit(X,y)
+#     svm_clf.append(rbf_kernel_svm_clf)
+#
+# for i,svm_clf in enumerate(svm_clf):
+#     plt.subplot(221+i)
+#     plot_predictions(svm_clf,[-1.5,2.5,-1,1.5])
+#     plot_datasets(X,y,[-1.5,2.5,-1,1.5])
+#     gamma,C = hyperparams[i]
+#     plt.title(r'$\gamma = {}, C = {}$'.format(gamma,C),fontsize=16)
+#
+# plt.figure(figsize=(10,10))
+# plt.show()
 
-svm_clf = []
-for gamma,C in hyperparams:
-    rbf_kernel_svm_clf = Pipeline([
-        ('scaler',StandardScaler()),
-        ('svm_clf',SVC(kernel='rbf',gamma=gamma,C=C))
-    ])
-    rbf_kernel_svm_clf.fit(X,y)
-    svm_clf.append(rbf_kernel_svm_clf)
+# Regression
 
-for i,svm_clf in enumerate(svm_clf):
-    plt.subplot(221+i)
-    plot_predictions(svm_clf,[-1.5,2.5,-1,1.5])
-    plot_datasets(X,y,[-1.5,2.5,-1,1.5])
-    gamma,C = hyperparams[i]
-    plt.title(r'$\gamma = {}, C = {}$'.format(gamma,C),fontsize=16)
+X, y = make_moons(n_samples=1000, noise=0.4, random_state=42)
+# plt.plot(X[:, 0][y==0], X[:, 1][y==0], "bs")
+# plt.plot(X[:, 0][y==1], X[:, 1][y==1], "g^")
+# plt.show()
 
-plt.figure(figsize=(10,10))
-plt.show()
+# import time
+#
+# tol = 0.1
+# tols = []
+# times = []
+# for i in range(10):
+#     svm_clf = SVC(kernel='poly',gamma=3,C=10,tol=tol,verbose=1)
+#     t1 = time.time()
+#     svm_clf.fit(X,y)
+#     t2 = time.time()
+#     times.append(t2-t1)
+#     tols.append(tol)
+#     print(i,tol,t2-t1)
+#     tol /= 10
+
+# plt.semilogx(tols, times, "bo-")
+# plt.xlabel("Tolerance", fontsize=16)
+# plt.ylabel("Time (seconds)", fontsize=16)
+# plt.grid(True)
+# plt.show()
+
+from sklearn.base import BaseEstimator
+
+class MyLinearSVC(BaseEstimator):
+    def __init__(self,C=1,eta0=1,eta_d=10000,n_epochs=1000,random_state=None):
+        self.C = C
+        self.eta0 = eta0
+        self.n_epochs = n_epochs
+        self.random_state = random_state
+        self.eta_d = eta_d
+
+    def eta(self,epoch):
+        return self.eta0 / (epoch + self.eta_d)
+
+    def fit(self,X,y):
+        if self.random_state:
+            np.random.seed(self.random_state)
+        w = np.random.randn(X.shape[1],1)
+        b = 0
+
+        m = len(X)
+        t = y * 2 - 1
+        X_t = X * t
+        self.Js = []
+        for epoch in range(self.n_epochs):
